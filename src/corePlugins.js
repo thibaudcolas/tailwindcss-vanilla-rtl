@@ -259,6 +259,11 @@ export let corePlugins = {
     ])
   },
 
+  /**
+  * Logical Properties and Values: overriding defaults.
+  * Replaced `paddingLeft` with `paddingInlineStart`, `paddingRight` with `paddingInlineEnd`, `marginLeft` with `marginInlineStart`, `marginRight` with `marginInlineEnd`.
+  * See https://caniuse.com/css-logical-props.
+  */
   container: (() => {
     function extractMinWidths(breakpoints = []) {
       return breakpoints
@@ -317,8 +322,8 @@ export let corePlugins = {
         }
 
         return {
-          paddingRight: paddingConfig.padding,
-          paddingLeft: paddingConfig.padding,
+          paddingInlineEnd: paddingConfig.padding,
+          paddingInlineStart: paddingConfig.padding,
         }
       }
 
@@ -337,7 +342,7 @@ export let corePlugins = {
         {
           '.container': Object.assign(
             { width: '100%' },
-            theme('container.center', false) ? { marginRight: 'auto', marginLeft: 'auto' } : {},
+            theme('container.center', false) ? { marginInlineEnd: 'auto', marginInlineStart: 'auto' } : {},
             generatePaddingFor(0)
           ),
         },
@@ -396,19 +401,25 @@ export let corePlugins = {
     })
   },
 
+  /**
+  * Logical Properties and Values: added with fallback.
+  * Added `inset-inline-start` after `left`, `inset-inline-end` after `right`.
+  * Retaining fallbacks because browser support isn’t entirely there.
+  * See https://caniuse.com/?search=inset-inline-start.
+  */
   inset: createUtilityPlugin(
     'inset',
     [
-      ['inset', ['top', 'right', 'bottom', 'left']],
+      ['inset', ['top', 'right', 'inset-inline-end', 'bottom', 'left', 'inset-inline-start']],
       [
-        ['inset-x', ['left', 'right']],
+        ['inset-x', ['left', 'inset-inline-start', 'right', 'inset-inline-end']],
         ['inset-y', ['top', 'bottom']],
       ],
       [
         ['top', ['top']],
-        ['right', ['right']],
+        ['right', ['right', 'inset-inline-end']],
         ['bottom', ['bottom']],
-        ['left', ['left']],
+        ['left', ['left', 'inset-inline-start']],
       ],
     ],
     { supportsNegativeValues: true }
@@ -430,6 +441,11 @@ export let corePlugins = {
   gridRowStart: createUtilityPlugin('gridRowStart', [['row-start', ['gridRowStart']]]),
   gridRowEnd: createUtilityPlugin('gridRowEnd', [['row-end', ['gridRowEnd']]]),
 
+  /**
+  * Logical Properties and Values: no changes.
+  * Avoid float layouts altogether. Browser support for flow-relative flow values is very poor.
+  * See https://caniuse.com/mdn-css_properties_float_flow_relative_values.
+  */
   float: ({ addUtilities }) => {
     addUtilities({
       '.float-right': { float: 'right' },
@@ -438,6 +454,11 @@ export let corePlugins = {
     })
   },
 
+  /**
+  * Logical Properties and Values: no changes.
+  * Avoid float layouts altogether. Browser support for flow-relative flow values is very poor.
+  * See https://caniuse.com/mdn-css_properties_float_flow_relative_values.
+  */
   clear: ({ addUtilities }) => {
     addUtilities({
       '.clear-left': { clear: 'left' },
@@ -447,19 +468,24 @@ export let corePlugins = {
     })
   },
 
+  /**
+  * Logical Properties and Values: overriding defaults.
+  * Replaced `left` with `inline-start`, `right` with `inline-end`.
+  * See https://caniuse.com/css-logical-props.
+  */
   margin: createUtilityPlugin(
     'margin',
     [
       ['m', ['margin']],
       [
-        ['mx', ['margin-left', 'margin-right']],
+        ['mx', ['margin-inline-start', 'margin-inline-end']],
         ['my', ['margin-top', 'margin-bottom']],
       ],
       [
         ['mt', ['margin-top']],
-        ['mr', ['margin-right']],
+        ['mr', ['margin-inline-end']],
         ['mb', ['margin-bottom']],
-        ['ml', ['margin-left']],
+        ['ml', ['margin-inline-start']],
       ],
     ],
     { supportsNegativeValues: true }
@@ -760,35 +786,47 @@ export let corePlugins = {
     })
   },
 
+  /**
+  * Logical Properties and Values: added with fallback.
+  * Added `scroll-margin-inline-start` after `scroll-margin-left`, `scroll-margin-inline-end` after `scroll-margin-right`.
+  * Retaining fallbacks because browser support isn’t entirely there.
+  * See https://caniuse.com/?search=scroll-margin-inline-start.
+  */
   scrollMargin: createUtilityPlugin(
     'scrollMargin',
     [
       ['scroll-m', ['scroll-margin']],
       [
-        ['scroll-mx', ['scroll-margin-left', 'scroll-margin-right']],
+        ['scroll-mx', ['scroll-margin-left', 'scroll-margin-inline-start', 'scroll-margin-right', 'scroll-margin-inline-end']],
         ['scroll-my', ['scroll-margin-top', 'scroll-margin-bottom']],
       ],
       [
         ['scroll-mt', ['scroll-margin-top']],
-        ['scroll-mr', ['scroll-margin-right']],
+        ['scroll-mr', ['scroll-margin-right', 'scroll-margin-inline-end']],
         ['scroll-mb', ['scroll-margin-bottom']],
-        ['scroll-ml', ['scroll-margin-left']],
+        ['scroll-ml', ['scroll-margin-left', 'scroll-margin-inline-start']],
       ],
     ],
     { supportsNegativeValues: true }
   ),
 
+  /**
+  * Logical Properties and Values: added with fallback.
+  * Added `scroll-padding-inline-start` after `scroll-padding-left`, `scroll-padding-inline-end` after `scroll-padding-right`.
+  * Retaining fallbacks because browser support isn’t entirely there.
+  * See https://caniuse.com/?search=scroll-padding-inline-start.
+  */
   scrollPadding: createUtilityPlugin('scrollPadding', [
     ['scroll-p', ['scroll-padding']],
     [
-      ['scroll-px', ['scroll-padding-left', 'scroll-padding-right']],
+      ['scroll-px', ['scroll-padding-left', 'scroll-padding-inline-start', 'scroll-padding-right', 'scroll-padding-inline-end']],
       ['scroll-py', ['scroll-padding-top', 'scroll-padding-bottom']],
     ],
     [
       ['scroll-pt', ['scroll-padding-top']],
-      ['scroll-pr', ['scroll-padding-right']],
+      ['scroll-pr', ['scroll-padding-right', 'scroll-padding-inline-end']],
       ['scroll-pb', ['scroll-padding-bottom']],
-      ['scroll-pl', ['scroll-padding-left']],
+      ['scroll-pl', ['scroll-padding-left', 'scroll-padding-inline-start']],
     ],
   ]),
 
@@ -948,6 +986,11 @@ export let corePlugins = {
     ],
   ]),
 
+  /**
+  * Logical Properties and Values: overriding defaults.
+  * Replaced `margin-left` with `margin-inline-start`, `margin-right` with `margin-inline-end`.
+  * See https://caniuse.com/css-logical-props.
+  */
   space: ({ matchUtilities, addUtilities, theme }) => {
     matchUtilities(
       {
@@ -957,8 +1000,8 @@ export let corePlugins = {
           return {
             '& > :not([hidden]) ~ :not([hidden])': {
               '--tw-space-x-reverse': '0',
-              'margin-right': `calc(${value} * var(--tw-space-x-reverse))`,
-              'margin-left': `calc(${value} * calc(1 - var(--tw-space-x-reverse)))`,
+              'margin-inline-end': `calc(${value} * var(--tw-space-x-reverse))`,
+              'margin-inline-start': `calc(${value} * calc(1 - var(--tw-space-x-reverse)))`,
             },
           }
         },
@@ -983,6 +1026,11 @@ export let corePlugins = {
     })
   },
 
+  /**
+  * Logical Properties and Values: overriding defaults.
+  * Replaced `border-left-width` with `border-inline-start-width`, `border-right-width` with `border-inline-end-width`.
+  * See https://caniuse.com/?search=border-inline-start-width.
+  */
   divideWidth: ({ matchUtilities, addUtilities, theme }) => {
     matchUtilities(
       {
@@ -993,8 +1041,8 @@ export let corePlugins = {
             '& > :not([hidden]) ~ :not([hidden])': {
               '@defaults border-width': {},
               '--tw-divide-x-reverse': '0',
-              'border-right-width': `calc(${value} * var(--tw-divide-x-reverse))`,
-              'border-left-width': `calc(${value} * calc(1 - var(--tw-divide-x-reverse)))`,
+              'border-inline-end-width': `calc(${value} * var(--tw-divide-x-reverse))`,
+              'border-inline-start-width': `calc(${value} * calc(1 - var(--tw-divide-x-reverse)))`,
             },
           }
         },
@@ -1174,35 +1222,45 @@ export let corePlugins = {
     })
   },
 
+  /**
+  * Logical Properties and Values: added with fallback.
+  * Retaining fallbacks because browser support isn’t entirely there.
+  * See https://caniuse.com/?search=border-inline-start-width.
+  */
   borderRadius: createUtilityPlugin('borderRadius', [
     ['rounded', ['border-radius']],
     [
-      ['rounded-t', ['border-top-left-radius', 'border-top-right-radius']],
-      ['rounded-r', ['border-top-right-radius', 'border-bottom-right-radius']],
-      ['rounded-b', ['border-bottom-right-radius', 'border-bottom-left-radius']],
-      ['rounded-l', ['border-top-left-radius', 'border-bottom-left-radius']],
+      ['rounded-t', ['border-top-left-radius', 'border-start-start-radius', 'border-top-right-radius', 'border-start-end-radius']],
+      ['rounded-r', ['border-top-right-radius', 'border-start-end-radius', 'border-bottom-right-radius', 'border-end-end-radius']],
+      ['rounded-b', ['border-bottom-right-radius', 'border-end-end-radius', 'border-bottom-left-radius', 'border-end-start-radius']],
+      ['rounded-l', ['border-top-left-radius', 'border-start-start-radius', 'border-bottom-left-radius', 'border-end-start-radius']],
     ],
     [
-      ['rounded-tl', ['border-top-left-radius']],
-      ['rounded-tr', ['border-top-right-radius']],
-      ['rounded-br', ['border-bottom-right-radius']],
-      ['rounded-bl', ['border-bottom-left-radius']],
+      ['rounded-tl', ['border-top-left-radius', 'border-start-start-radius']],
+      ['rounded-tr', ['border-top-right-radius', 'border-start-end-radius']],
+      ['rounded-br', ['border-bottom-right-radius', 'border-end-end-radius']],
+      ['rounded-bl', ['border-bottom-left-radius', 'border-end-start-radius']],
     ],
   ]),
 
+  /**
+  * Logical Properties and Values: overriding defaults.
+  * Replaced `border-left-width` with `border-inline-start-width`, `border-right-width` with `border-inline-end-width`.
+  * See https://caniuse.com/css-logical-props.
+  */
   borderWidth: createUtilityPlugin(
     'borderWidth',
     [
       ['border', [['@defaults border-width', {}], 'border-width']],
       [
-        ['border-x', [['@defaults border-width', {}], 'border-left-width', 'border-right-width']],
+        ['border-x', [['@defaults border-width', {}], 'border-inline-start-width', 'border-inline-end-width']],
         ['border-y', [['@defaults border-width', {}], 'border-top-width', 'border-bottom-width']],
       ],
       [
         ['border-t', [['@defaults border-width', {}], 'border-top-width']],
-        ['border-r', [['@defaults border-width', {}], 'border-right-width']],
+        ['border-r', [['@defaults border-width', {}], 'border-inline-end-width']],
         ['border-b', [['@defaults border-width', {}], 'border-bottom-width']],
-        ['border-l', [['@defaults border-width', {}], 'border-left-width']],
+        ['border-l', [['@defaults border-width', {}], 'border-inline-start-width']],
       ],
     ],
     { type: ['line-width', 'length'] }
@@ -1219,6 +1277,11 @@ export let corePlugins = {
     })
   },
 
+  /**
+  * Logical Properties and Values: overriding defaults.
+  * Replaced `border-left-color` with `border-inline-start-color`, `border-right-color` with `border-inline-end-color`.
+  * See https://caniuse.com/?search=border-inline-start-color.
+  */
   borderColor: ({ matchUtilities, theme, corePlugins }) => {
     matchUtilities(
       {
@@ -1247,14 +1310,14 @@ export let corePlugins = {
         'border-x': (value) => {
           if (!corePlugins('borderOpacity')) {
             return {
-              'border-left-color': toColorValue(value),
-              'border-right-color': toColorValue(value),
+              'border-inline-start-color': toColorValue(value),
+              'border-inline-end-color': toColorValue(value),
             }
           }
 
           return withAlphaVariable({
             color: value,
-            property: ['border-left-color', 'border-right-color'],
+            property: ['border-inline-start-color', 'border-inline-end-color'],
             variable: '--tw-border-opacity',
           })
         },
@@ -1297,13 +1360,13 @@ export let corePlugins = {
         'border-r': (value) => {
           if (!corePlugins('borderOpacity')) {
             return {
-              'border-right-color': toColorValue(value),
+              'border-inline-end-color': toColorValue(value),
             }
           }
 
           return withAlphaVariable({
             color: value,
-            property: 'border-right-color',
+            property: 'border-inline-end-color',
             variable: '--tw-border-opacity',
           })
         },
@@ -1323,13 +1386,13 @@ export let corePlugins = {
         'border-l': (value) => {
           if (!corePlugins('borderOpacity')) {
             return {
-              'border-left-color': toColorValue(value),
+              'border-inline-start-color': toColorValue(value),
             }
           }
 
           return withAlphaVariable({
             color: value,
-            property: 'border-left-color',
+            property: 'border-inline-start-color',
             variable: '--tw-border-opacity',
           })
         },
@@ -1508,25 +1571,35 @@ export let corePlugins = {
   },
   objectPosition: createUtilityPlugin('objectPosition', [['object', ['object-position']]]),
 
+  /**
+  * Logical Properties and Values: overriding defaults.
+  * Replaced `padding-left` with `padding-inline-start`, `padding-right` with `padding-inline-end`.
+  * See https://caniuse.com/css-logical-props.
+  */
   padding: createUtilityPlugin('padding', [
     ['p', ['padding']],
     [
-      ['px', ['padding-left', 'padding-right']],
+      ['px', ['padding-inline-start', 'padding-inline-end']],
       ['py', ['padding-top', 'padding-bottom']],
     ],
     [
       ['pt', ['padding-top']],
-      ['pr', ['padding-right']],
+      ['pr', ['padding-inline-end']],
       ['pb', ['padding-bottom']],
-      ['pl', ['padding-left']],
+      ['pl', ['padding-inline-start']],
     ],
   ]),
 
+  /**
+  * Logical Properties and Values: overriding defaults.
+  * Replaced `left` with `start`, `right` with `end` for values.
+  * See https://caniuse.com/css-logical-props.
+  */
   textAlign: ({ addUtilities }) => {
     addUtilities({
-      '.text-left': { 'text-align': 'left' },
+      '.text-left': { 'text-align': 'start' },
       '.text-center': { 'text-align': 'center' },
-      '.text-right': { 'text-align': 'right' },
+      '.text-right': { 'text-align': 'end' },
       '.text-justify': { 'text-align': 'justify' },
     })
   },
