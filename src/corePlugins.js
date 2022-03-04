@@ -4,22 +4,23 @@
  * with Logical Properties changes applied,
  * so the whole file can be diffed to keep up with Tailwind core plugins upgrades.
  */
-import fs from 'fs'
-import * as path from 'path'
-import postcss from 'postcss'
-import createUtilityPlugin from './util/createUtilityPlugin'
-import buildMediaQuery from './util/buildMediaQuery'
-import parseAnimationValue from './util/parseAnimationValue'
-import flattenColorPalette from './util/flattenColorPalette'
-import withAlphaVariable, { withAlphaValue } from './util/withAlphaVariable'
-import toColorValue from './util/toColorValue'
-import isPlainObject from './util/isPlainObject'
-import transformThemeValue from './util/transformThemeValue'
-import { version as tailwindVersion } from '../package.json'
-import log from './util/log'
-import { normalizeScreens } from './util/normalizeScreens'
-import { formatBoxShadowValue, parseBoxShadowValue } from './util/parseBoxShadowValue'
+// import fs from 'fs'
+// import * as path from 'path'
+// import postcss from 'postcss'
+import createUtilityPlugin from 'tailwindcss/lib/util/createUtilityPlugin'
+// import buildMediaQuery from './util/buildMediaQuery'
+// import parseAnimationValue from './util/parseAnimationValue'
+import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
+import withAlphaVariable, { withAlphaValue } from 'tailwindcss/lib/util/withAlphaVariable'
+import toColorValue from 'tailwindcss/lib/util/toColorValue'
+// import isPlainObject from './util/isPlainObject'
+// import transformThemeValue from './util/transformThemeValue'
+// import { version as tailwindVersion } from '../package.json'
+// import log from './util/log'
+import { normalizeScreens } from 'tailwindcss/lib/util/normalizeScreens'
+// import { formatBoxShadowValue, parseBoxShadowValue } from './util/parseBoxShadowValue'
 
+/*
 export let variantPlugins = {
   pseudoElementVariants: ({ addVariant }) => {
     addVariant('first-letter', '&::first-letter')
@@ -244,8 +245,10 @@ let cssBackdropFilterValue = [
   'var(--tw-backdrop-saturate)',
   'var(--tw-backdrop-sepia)',
 ].join(' ')
+*/
 
 export let corePlugins = {
+  /*
   preflight: ({ addBase }) => {
     let preflightStyles = postcss.parse(
       fs.readFileSync(path.join(__dirname, './css/preflight.css'), 'utf8')
@@ -258,6 +261,7 @@ export let corePlugins = {
       ...preflightStyles.nodes,
     ])
   },
+  */
 
   /**
   * Logical Properties and Values: overriding defaults.
@@ -350,7 +354,7 @@ export let corePlugins = {
       ])
     }
   })(),
-
+  /*
   accessibility: ({ addUtilities }) => {
     addUtilities({
       '.sr-only': {
@@ -400,7 +404,7 @@ export let corePlugins = {
       '.sticky': { position: 'sticky' },
     })
   },
-
+  */
   /**
   * Logical Properties and Values: added with fallback.
   * Added `inset-inline-start` after `left`, `inset-inline-end` after `right`.
@@ -424,7 +428,7 @@ export let corePlugins = {
     ],
     { supportsNegativeValues: true }
   ),
-
+  /*
   isolation: ({ addUtilities }) => {
     addUtilities({
       '.isolate': { isolation: 'isolate' },
@@ -440,12 +444,13 @@ export let corePlugins = {
   gridRow: createUtilityPlugin('gridRow', [['row', ['gridRow']]]),
   gridRowStart: createUtilityPlugin('gridRowStart', [['row-start', ['gridRowStart']]]),
   gridRowEnd: createUtilityPlugin('gridRowEnd', [['row-end', ['gridRowEnd']]]),
-
+  */
   /**
   * Logical Properties and Values: no changes.
   * Avoid float layouts altogether. Browser support for flow-relative flow values is very poor.
   * See https://caniuse.com/mdn-css_properties_float_flow_relative_values.
   */
+  /*
   float: ({ addUtilities }) => {
     addUtilities({
       '.float-right': { float: 'right' },
@@ -453,12 +458,13 @@ export let corePlugins = {
       '.float-none': { float: 'none' },
     })
   },
-
+  */
   /**
   * Logical Properties and Values: no changes.
   * Avoid float layouts altogether. Browser support for flow-relative flow values is very poor.
   * See https://caniuse.com/mdn-css_properties_float_flow_relative_values.
   */
+  /*
   clear: ({ addUtilities }) => {
     addUtilities({
       '.clear-left': { clear: 'left' },
@@ -467,7 +473,7 @@ export let corePlugins = {
       '.clear-none': { clear: 'none' },
     })
   },
-
+  */
   /**
   * Logical Properties and Values: overriding defaults.
   * Replaced `left` with `inline-start`, `right` with `inline-end`.
@@ -490,7 +496,7 @@ export let corePlugins = {
     ],
     { supportsNegativeValues: true }
   ),
-
+  /*
   boxSizing: ({ addUtilities }) => {
     addUtilities({
       '.box-border': { 'box-sizing': 'border-box' },
@@ -785,7 +791,7 @@ export let corePlugins = {
       '.snap-always': { 'scroll-snap-stop': 'always' },
     })
   },
-
+  */
   /**
   * Logical Properties and Values: added with fallback.
   * Added `scroll-margin-inline-start` after `scroll-margin-left`, `scroll-margin-inline-end` after `scroll-margin-right`.
@@ -829,7 +835,7 @@ export let corePlugins = {
       ['scroll-pl', ['scroll-padding-left', 'scroll-padding-inline-start']],
     ],
   ]),
-
+  /*
   listStylePosition: ({ addUtilities }) => {
     addUtilities({
       '.list-inside': { 'list-style-position': 'inside' },
@@ -985,7 +991,7 @@ export let corePlugins = {
       ['gap-y', ['rowGap']],
     ],
   ]),
-
+  */
   /**
   * Logical Properties and Values: overriding defaults.
   * Replaced `margin-left` with `margin-inline-start`, `margin-right` with `margin-inline-end`.
@@ -1073,7 +1079,7 @@ export let corePlugins = {
       },
     })
   },
-
+  /*
   divideStyle: ({ addUtilities }) => {
     addUtilities({
       '.divide-solid > :not([hidden]) ~ :not([hidden])': { 'border-style': 'solid' },
@@ -1221,7 +1227,7 @@ export let corePlugins = {
       '.break-all': { 'word-break': 'break-all' },
     })
   },
-
+  */
   /**
   * Logical Properties and Values: added with fallback.
   * Retaining fallbacks because browser support isn’t entirely there.
@@ -1265,7 +1271,7 @@ export let corePlugins = {
     ],
     { type: ['line-width', 'length'] }
   ),
-
+  /*
   borderStyle: ({ addUtilities }) => {
     addUtilities({
       '.border-solid': { 'border-style': 'solid' },
@@ -1276,7 +1282,7 @@ export let corePlugins = {
       '.border-none': { 'border-style': 'none' },
     })
   },
-
+  */
   /**
   * Logical Properties and Values: overriding defaults.
   * Replaced `border-left-color` with `border-inline-start-color`, `border-right-color` with `border-inline-end-color`.
@@ -1403,7 +1409,7 @@ export let corePlugins = {
       }
     )
   },
-
+  /*
   borderOpacity: createUtilityPlugin('borderOpacity', [
     ['border-opacity', ['--tw-border-opacity']],
   ]),
@@ -1570,7 +1576,7 @@ export let corePlugins = {
     })
   },
   objectPosition: createUtilityPlugin('objectPosition', [['object', ['object-position']]]),
-
+  */
   /**
   * Logical Properties and Values: overriding defaults.
   * Replaced `padding-left` with `padding-inline-start`, `padding-right` with `padding-inline-end`.
@@ -1603,7 +1609,7 @@ export let corePlugins = {
       '.text-justify': { 'text-align': 'justify' },
     })
   },
-
+  /*
   textIndent: createUtilityPlugin('textIndent', [['indent', ['text-indent']]], {
     supportsNegativeValues: true,
   }),
@@ -2435,4 +2441,5 @@ export let corePlugins = {
   content: createUtilityPlugin('content', [
     ['content', ['--tw-content', ['content', 'var(--tw-content)']]],
   ]),
+  */
 }
