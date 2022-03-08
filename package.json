@@ -34,7 +34,7 @@
     "build:lib": "swc src --out-dir dist --copy-files",
     "build:demo": "tailwindcss --config demo/tailwind.config.js --output demo/out.css",
     "prepublishOnly": "npm run build",
-    "format": "prettier --write '**/?(.)*.{css,scss,js,ts,tsx,json,yaml,yml,md}'",
+    "format": "prettier --write '**/?(.)*.{css,scss,js,ts,tsx,json,yaml,yml,md,html}'",
     "lint:js": "eslint --ext .js,.ts,.tsx --report-unused-disable-directives .",
     "lint:format": "prettier --check '**/?(.)*.{css,scss,js,ts,tsx,json,yaml,yml,md}'",
     "lint": "npm run lint:js && npm run lint:format",
