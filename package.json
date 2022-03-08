@@ -20,6 +20,8 @@
     "tailwindcss": "^3.0.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "16.2.1",
+    "@commitlint/config-conventional": "16.2.1",
     "@swc/cli": "0.1.55",
     "@swc/core": "1.2.147",
     "@swc/jest": "0.2.20",
@@ -30,6 +32,7 @@
     "tailwindcss": "3.0.23"
   },
   "scripts": {
+    "prepare": "./.githooks/install.sh",
     "build": "npm run build:lib && npm run build:demo",
     "build:lib": "swc src --out-dir dist --copy-files",
     "build:demo": "tailwindcss --config demo/tailwind.config.js --output demo/out.css",

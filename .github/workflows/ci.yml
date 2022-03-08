@@ -9,16 +9,16 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      # - run: echo "commits_count_incr=$(($COUNT+1))" >> $GITHUB_ENV
-      #   if: ${{ github.event_name == 'pull_request' }}
-      #   env:
-      #     COUNT: ${{ github.event.pull_request.commits }}
-      # - uses: actions/checkout@v3
-      #   if: ${{ github.event_name == 'pull_request' }}
-      #   with:
-      #     fetch-depth: ${{ env.commits_count_incr }}
+      - run: echo "commits_count_incr=$(($COUNT+1))" >> $GITHUB_ENV
+        if: ${{ github.event_name == 'pull_request' }}
+        env:
+          COUNT: ${{ github.event.pull_request.commits }}
       - uses: actions/checkout@v3
-        # if: ${{ github.event_name != 'pull_request' }}
+        if: ${{ github.event_name == 'pull_request' }}
+        with:
+          fetch-depth: ${{ env.commits_count_incr }}
+      - uses: actions/checkout@v3
+        if: ${{ github.event_name != 'pull_request' }}
       - uses: actions/setup-node@v3
         with:
           node-version-file: ".nvmrc"
@@ -29,16 +29,16 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/.nvmrc') }}-${{ hashFiles('**/package-lock.json') }}
       - if: steps.node-cache.outputs.cache-hit != 'true'
         run: npm ci
-      # # Test Git hooks in CI, to make sure script upgrades do not break them.
-      # - run: npm run prepare
-      # # Test commit message validation in CI.
-      # - run: git log -1 --pretty=%B >> latest.log && ./.git/hooks/commit-msg latest.log
+      # Test Git hooks in CI, to make sure script upgrades do not break them.
+      - run: npm run prepare
+      # Test commit message validation in CI.
+      - run: git log -1 --pretty=%B >> latest.log && ./.git/hooks/commit-msg latest.log
       - run: npm run lint:format
       - run: npm run lint:js
       - run: npm run test
       - run: npm run build
-      # - run: npx commitlint --from HEAD~${{ github.event.pull_request.commits }} --to HEAD
-      #   if: ${{ github.event_name == 'pull_request' }}
+      - run: npx commitlint --from HEAD~${{ github.event.pull_request.commits }} --to HEAD
+        if: ${{ github.event_name == 'pull_request' }}
       # - run: npx danger ci --verbose
       #   if: ${{ github.event_name == 'pull_request' }}
       #   env:

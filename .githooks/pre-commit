@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+# Fail on first line that fails.
+set -e
+
+# Only keep staged files that are added (A), copied (C) or modified (M).
+STAGED=$(git --no-pager diff --name-only --cached --diff-filter=ACM)
+# Files which are only partly staged (eg. git add --patch).
+PATCH_STAGED=$(git --no-pager diff --name-only --diff-filter=ACM $STAGED)
+# Files which are fully staged.
+FULLY_STAGED=$(comm -23 <(echo "$STAGED") <(echo "$PATCH_STAGED"))
+
+JS_STAGED=$(grep -E '.(js|ts|tsx)$' <<< "$STAGED" || true)
+CSS_STAGED=$(grep -E '.(css|scss)$' <<< "$STAGED" || true)
+JSON_STAGED=$(grep -E '.json$' <<< "$STAGED" || true)
+HTML_STAGED=$(grep -E '.html$' <<< "$STAGED" || true)
+PRETTIER_STAGED=$(grep -E '.(md|css|scss|js|ts|tsx|json|json5|yaml|yml|html)$' <<< "$STAGED" || true)
+PRETTIER_FULLY_STAGED=$(grep -E '.(md|css|scss|js|ts|tsx|json|json5|yaml|yml|html)$' <<< "$FULLY_STAGED" || true)
+
+# Uncomment, and add more variables to the list, for debugging help.
+# tr ' ' '\n' <<< "STAGED $STAGED PATCH_STAGED $PATCH_STAGED FULLY_STAGED $FULLY_STAGED JS_STAGED $JS_STAGED
+
+# Check if this is the initial commit
+if git rev-parse --verify HEAD >/dev/null 2>&1
+then
+  against=HEAD
+else
+  against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
+fi
+
+# Use git diff-index to check for whitespace errors
+if ! git diff-index --check --cached $against -- ':!*.js.snap' .
+then
+  echo "Aborting commit due to whitespace errors."
+  exit 1
+fi
+
+if [ -n "$PRETTIER_FULLY_STAGED" ];
+then
+  npx prettier --write $PRETTIER_FULLY_STAGED
+  git add $PRETTIER_FULLY_STAGED
+fi
+
+if [ -n "$PRETTIER_STAGED" ];
+then
+  npx prettier --check $PRETTIER_STAGED
+fi
+
+if [ -n "$JS_STAGED" ] || [ -n "$JSON_STAGED" ];
+then
+  npx eslint $JS_STAGED
+fi
+
+if [ -n "$JS_STAGED" ] || [ -n "$JSON_STAGED" ];
+then
+  npm run test -s
+fi
+
+if [ -n "$HTML_STAGED" ] || [ -n "$JS_STAGED" ] || [ -n "$JSON_STAGED" ];
+then
+  npm run build -s
+fi
