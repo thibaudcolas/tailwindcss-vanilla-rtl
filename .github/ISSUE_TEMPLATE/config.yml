@@ -1,0 +1,4 @@
+contact_links:
+  - name: "❓ Questions about this plugin"
+    url: https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/discussions
+    about: Use GitHub Discussions to get help with this plugin.

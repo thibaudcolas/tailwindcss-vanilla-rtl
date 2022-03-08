@@ -1,33 +1,44 @@
 {
-  "name": "tailwindcss-logical-rtl",
+  "name": "tailwindcss-vanilla-rtl",
   "version": "0.1.0",
   "author": "Thibaud Colas",
   "license": "MIT",
-  "description": "",
+  "description": "Simple right-to-left (RTL) language support, switching vanilla Tailwind utilities to CSS logical properties and values",
+  "homepage": "https://github.com/thibaudcolas/tailwindcss-vanilla-rtl",
   "main": "./dist/index.js",
-  "keywords": [],
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "tailwind",
+    "tailwindcss",
+    "rtl",
+    "tailwind plugin",
+    "logical"
+  ],
+  "peerDependencies": {
+    "tailwindcss": "^3.0.0"
+  },
+  "devDependencies": {
+    "@swc/cli": "0.1.55",
+    "@swc/core": "1.2.147",
+    "@swc/jest": "0.2.20",
+    "@swc/register": "0.1.10",
+    "jest": "27.5.1",
+    "prettier": "2.5.1",
+    "tailwindcss": "3.0.23"
+  },
   "scripts": {
     "build": "npm run build:lib && npm run build:demo",
     "build:lib": "swc src --out-dir dist --copy-files",
-    "build:demo": "tailwindcss --config docs/tailwind.config.js --output docs/out.css",
+    "build:demo": "tailwindcss --config demo/tailwind.config.js --output demo/out.css",
     "prepublishOnly": "npm run build",
     "format": "prettier --write '**/?(.)*.{css,scss,js,ts,tsx,json,yaml,yml,md}'",
     "lint:js": "eslint --ext .js,.ts,.tsx --report-unused-disable-directives .",
     "lint:format": "prettier --check '**/?(.)*.{css,scss,js,ts,tsx,json,yaml,yml,md}'",
     "lint": "npm run lint:js && npm run lint:format",
     "test": "jest",
-    "test:watch": "jest --watch"
-  },
-  "peerDependencies": {
-    "tailwindcss": "^3.0.0"
-  },
-  "devDependencies": {
-    "@swc/cli": "^0.1.55",
-    "@swc/core": "^1.2.147",
-    "@swc/jest": "^0.2.20",
-    "@swc/register": "^0.1.10",
-    "jest": "^27.5.1",
-    "prettier": "^2.5.1",
-    "tailwindcss": "^3.0.23"
+    "test:watch": "jest --watch",
+    "report:package": "npm pack --loglevel notice 2>&1 >/dev/null | sed -e 's/^npm notice //' && rm *.tgz"
   }
 }
