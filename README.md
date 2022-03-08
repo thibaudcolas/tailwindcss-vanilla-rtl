@@ -130,50 +130,49 @@ Follow the conversation in Tailwind discussion [#1483 \[Feature Proposal\] CSS L
 
 This comparison table reviews utility class names across Tailwind plugins built with [CSS logical properties and values](https://rtlstyling.com/posts/rtl-styling#css-logical-properties).
 
-| tailwindcss-vanilla-rtl                                                                 | tailwindcss-rtl | tailwindcss-logical | tailwindcss-vanilla-rtl properties output                                                                           |
-| --------------------------------------------------------------------------------------- | --------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| **[Margin](https://tailwindcss.com/docs/margin)**                                       |                 |
-| `mx-0`                                                                                  | N/A             | `mli-0`             | `margin-inline-start: 0; margin-inline-end: 0`                                                                      |
-| `mr-0`                                                                                  | `me-0`          | `mie-0`             | `margin-inline-end: 0`                                                                                              |
-| `ml-0`                                                                                  | `ms-0`          | `mis-0`             | `margin-inline-start: 0`                                                                                            |
-| **[Padding](https://tailwindcss.com/docs/padding)**                                     |                 |                     |                                                                                                                     |
-| `px-0`                                                                                  | N/A             | `pli-0`             | `padding-inline-start: 0; padding-inline-end: 0`                                                                    |
-| `pr-0`                                                                                  | `pe-0`          | `pie-0`             | `padding-inline-end: 0`                                                                                             |
-| `pl-0`                                                                                  | `ps-0`          | `pis-0`             | `padding-inline-start: 0`                                                                                           |
-| **[Inset (top/right/bottom/left)](https://tailwindcss.com/docs/top-right-bottom-left)** |                 |                     |                                                                                                                     |
-| `inset-0`                                                                               | N/A             | N/A                 | `top: 0; left: 0; inset-inline-start: 0; right: 0; inset-inline-end: 0; bottom: 0`                                  |
-| `inset-x-0`                                                                             | N/A             | `inset-inline-0`    | `left: 0; inset-inline-start: 0; right: 0; inset-inline-end: 0`                                                     |
-| `right-0`                                                                               | `end-0`         | `inline-end-0`      | `inset-inline-end: 0`                                                                                               |
-| `left-0`                                                                                | `start-0`       | `inline-start-0`    | `inset-inline-start: 0`                                                                                             |
-| **[Space Between](https://tailwindcss.com/docs/space)**                                 |                 |                     |                                                                                                                     |
-| `space-x-0`                                                                             | N/A             | `space-i-0`         | Same as `space` corePlugin, w/ `margin-inline-end` and `margin-inline-start`                                        |
-| **[Scroll Margin](https://tailwindcss.com/docs/scroll-margin)**                         |                 |                     |                                                                                                                     |
-| `scroll-mx-0`                                                                           | N/A             | N/A                 | `scroll-margin-inline-start: 0; scroll-margin-inline-end: 0`                                                        |
-| `scroll-mr-0`                                                                           | N/A             | N/A                 | `scroll-margin-inline-end: 0`                                                                                       |
-| `scroll-ml-0`                                                                           | N/A             | N/A                 | `scroll-margin-inline-start: 0`                                                                                     |
-| **[Scroll Padding](https://tailwindcss.com/docs/scroll-padding)**                       |                 |                     |                                                                                                                     |
-| `scroll-px-0`                                                                           | N/A             | N/A                 | `scroll-padding-inline-start: 0; scroll-padding-inline-end: 0`                                                      |
-| `scroll-pr-0`                                                                           | N/A             | N/A                 | `scroll-padding-inline-end: 0`                                                                                      |
-| `scroll-pl-0`                                                                           | N/A             | N/A                 | `scroll-padding-inline-start: 0`                                                                                    |
-| **[Border Radius](https://tailwindcss.com/docs/border-radius)**                         |                 |                     |                                                                                                                     |
-| `rounded-t-0`                                                                           | N/A             | `rounded-bs-0`      | `border-top-left-radius: 0; border-start-start-radius: 0; border-top-right-radius: 0; border-start-end-radius: 0`   |
-| `rounded-r-0`                                                                           | `rounded-e-0`   | `rounded-ie-0`      | `border-top-right-radius: 0; border-start-end-radius: 0; border-bottom-right-radius: 0; border-end-end-radius: 0`   |
-| `rounded-b-0`                                                                           | N/A             | `rounded-be-0`      | `border-bottom-right-radius: 0; border-end-end-radius: 0; border-bottom-left-radius: 0; border-end-start-radius: 0` |
-| `rounded-l-0`                                                                           | `rounded-s-0`   | `rounded-is-0`      | `border-top-left-radius: 0; border-start-start-radius: 0; border-bottom-left-radius: 0; border-end-start-radius: 0` |
-| `rounded-tl-0`                                                                          | `rounded-ts-0`  | `rounded-ss-0`      | `border-top-left-radius: 0; border-start-start-radius: 0`                                                           |
-| `rounded-tr-0`                                                                          | `rounded-te-0`  | `rounded-se-0`      | `border-top-right-radius: 0; border-start-end-radius: 0`                                                            |
-| `rounded-br-0`                                                                          | `rounded-be-0`  | `rounded-ee-0`      | `border-bottom-right-radius: 0; border-end-end-radius: 0`                                                           |
-| `rounded-bl-0`                                                                          | `rounded-bs-0`  | `rounded-es-0`      | `border-bottom-left-radius: 0; border-end-start-radius: 0`                                                          |
-| **[Border Width](https://tailwindcss.com/docs/border-width)**                           |                 |                     |                                                                                                                     |
-| `border-x-0`                                                                            | N/A             | `border-li-0`       | `border-inline-start-width: 0; border-inline-end-width: 0`                                                          |
-| `border-r-0`                                                                            | `border-e-0`    | `border-ie-0`       | `border-inline-end-width: 0`                                                                                        |
-| `border-l-0`                                                                            | `border-s-0`    | `border-is-0`       | `border-inline-start-width: 0`                                                                                      |
-| **[Border Color](https://tailwindcss.com/docs/border-color)**                           |                 |                     |                                                                                                                     |
-| `border-x-black`                                                                        | N/A             | `border-li-black`   | `border-inline-start-color: black; border-inline-end-color: black`                                                  |
-| `border-r-black`                                                                        | N/A             | `border-ie-black`   | `border-inline-end-color: black`                                                                                    |
-| `border-l-black`                                                                        | N/A             | `border-is-black`   | `border-inline-start-color: black`                                                                                  |
-| **[Divide Width](https://tailwindcss.com/docs/divide-width)**                           |                 |                     |                                                                                                                     |
-| `divide-x-0`                                                                            | N/A             | `divide-i-0`        | Same as `divideWidth` corePlugin, w/ `border-inline-end-width` and `border-inline-start-width`                      |
-| **[Text Align](https://tailwindcss.com/docs/text-align)**                               |                 |                     |                                                                                                                     |
-| `text-right`                                                                            | `text-end`      | `text-end`          | `text-align: end;`                                                                                                  |
-| `text-left`                                                                             | `text-start`    | `text-start`        | `text-align: start;`                                                                                                |
+| tailwindcss-vanilla-rtl                                                                 | tailwindcss-rtl | tailwindcss-logical |
+| --------------------------------------------------------------------------------------- | --------------- | ------------------- |
+| `mx-0`                                                                                  | N/A             | `mli-0`             |
+| `mr-0`                                                                                  | `me-0`          | `mie-0`             |
+| `ml-0`                                                                                  | `ms-0`          | `mis-0`             |
+| **[Padding](https://tailwindcss.com/docs/padding)**                                     |                 |                     |
+| `px-0`                                                                                  | N/A             | `pli-0`             |
+| `pr-0`                                                                                  | `pe-0`          | `pie-0`             |
+| `pl-0`                                                                                  | `ps-0`          | `pis-0`             |
+| **[Inset (top/right/bottom/left)](https://tailwindcss.com/docs/top-right-bottom-left)** |                 |                     |
+| `inset-0`                                                                               | N/A             | N/A                 |
+| `inset-x-0`                                                                             | N/A             | `inset-inline-0`    |
+| `right-0`                                                                               | `end-0`         | `inline-end-0`      |
+| `left-0`                                                                                | `start-0`       | `inline-start-0`    |
+| **[Space Between](https://tailwindcss.com/docs/space)**                                 |                 |                     |
+| `space-x-0`                                                                             | N/A             | `space-i-0`         |
+| **[Scroll Margin](https://tailwindcss.com/docs/scroll-margin)**                         |                 |                     |
+| `scroll-mx-0`                                                                           | N/A             | N/A                 |
+| `scroll-mr-0`                                                                           | N/A             | N/A                 |
+| `scroll-ml-0`                                                                           | N/A             | N/A                 |
+| **[Scroll Padding](https://tailwindcss.com/docs/scroll-padding)**                       |                 |                     |
+| `scroll-px-0`                                                                           | N/A             | N/A                 |
+| `scroll-pr-0`                                                                           | N/A             | N/A                 |
+| `scroll-pl-0`                                                                           | N/A             | N/A                 |
+| **[Border Radius](https://tailwindcss.com/docs/border-radius)**                         |                 |                     |
+| `rounded-t-0`                                                                           | N/A             | `rounded-bs-0`      |
+| `rounded-r-0`                                                                           | `rounded-e-0`   | `rounded-ie-0`      |
+| `rounded-b-0`                                                                           | N/A             | `rounded-be-0`      |
+| `rounded-l-0`                                                                           | `rounded-s-0`   | `rounded-is-0`      |
+| `rounded-tl-0`                                                                          | `rounded-ts-0`  | `rounded-ss-0`      |
+| `rounded-tr-0`                                                                          | `rounded-te-0`  | `rounded-se-0`      |
+| `rounded-br-0`                                                                          | `rounded-be-0`  | `rounded-ee-0`      |
+| `rounded-bl-0`                                                                          | `rounded-bs-0`  | `rounded-es-0`      |
+| **[Border Width](https://tailwindcss.com/docs/border-width)**                           |                 |                     |
+| `border-x-0`                                                                            | N/A             | `border-li-0`       |
+| `border-r-0`                                                                            | `border-e-0`    | `border-ie-0`       |
+| `border-l-0`                                                                            | `border-s-0`    | `border-is-0`       |
+| **[Border Color](https://tailwindcss.com/docs/border-color)**                           |                 |                     |
+| `border-x-black`                                                                        | N/A             | `border-li-black`   |
+| `border-r-black`                                                                        | N/A             | `border-ie-black`   |
+| `border-l-black`                                                                        | N/A             | `border-is-black`   |
+| **[Divide Width](https://tailwindcss.com/docs/divide-width)**                           |                 |                     |
+| `divide-x-0`                                                                            | N/A             | `divide-i-0`        |
+| **[Text Align](https://tailwindcss.com/docs/text-align)**                               |                 |                     |
+| `text-right`                                                                            | `text-end`      | `text-end`          |
+| `text-left`                                                                             | `text-start`    | `text-start`        |
