@@ -24,6 +24,7 @@
     "@swc/core": "1.2.147",
     "@swc/jest": "0.2.20",
     "@swc/register": "0.1.10",
+    "eslint": "8.10.0",
     "jest": "27.5.1",
     "prettier": "2.5.1",
     "tailwindcss": "3.0.23"
