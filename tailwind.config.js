@@ -1,9 +1,9 @@
-const logicalRTL = require("../dist/index");
+const vanillaRTL = require("../dist/index");
 
 module.exports = {
   content: ["demo/*.html"],
-  plugins: [logicalRTL],
+  plugins: [vanillaRTL],
   corePlugins: {
-    ...logicalRTL.disabledCorePlugins,
+    ...vanillaRTL.disabledCorePlugins,
   },
 };
