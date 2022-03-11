@@ -15,15 +15,15 @@ npm install tailwindcss-logical --save-dev
 ```
 
 ```js
-const logicalRTL = require("tailwindcss-vanilla-rtl");
+const vanillaRTL = require("tailwindcss-vanilla-rtl");
 
 module.exports = {
   plugins: [
     // […]
-    logicalRTL,
+    vanillaRTL,
   ],
   corePlugins: {
-    ...logicalRTL.disabledCorePlugins,
+    ...vanillaRTL.disabledCorePlugins,
   },
 };
 ```
