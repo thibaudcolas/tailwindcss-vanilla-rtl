@@ -34,7 +34,7 @@
   "scripts": {
     "prepare": "./.githooks/install.sh",
     "build": "npm run build:lib && npm run build:demo",
-    "build:lib": "swc src --out-dir dist --copy-files",
+    "build:lib": "swc src --out-dir dist --delete-dir-on-start",
     "build:demo": "tailwindcss --config demo/tailwind.config.js --output demo/out.css",
     "prepublishOnly": "npm run build",
     "format": "prettier --write '**/?(.)*.{css,scss,js,ts,tsx,json,yaml,yml,md,html}'",
