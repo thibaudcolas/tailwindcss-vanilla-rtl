@@ -37,6 +37,7 @@
   packageRules: [
     // Node packages.
     { packageNames: ["prettier"], groupName: "prettier", automerge: true },
+    { packageNames: ["eslint"], groupName: "eslint", automerge: true },
     { packageNames: ["jest"], groupName: "jest", automerge: true },
     {
       packageNames: ["JamesIves/github-pages-deploy-action"],
@@ -46,6 +47,11 @@
     {
       packagePatterns: ["^@swc"],
       groupName: "swc",
+      automerge: true,
+    },
+    {
+      packagePatterns: ["^@commitlint"],
+      groupName: "commitlint",
       automerge: true,
     },
     {
