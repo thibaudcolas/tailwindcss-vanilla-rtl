@@ -55,7 +55,7 @@
       automerge: true,
     },
     {
-      packagePatterns: ["^actions"],
+      packagePatterns: ["^actions/", "^github/"],
       groupName: "actions",
       automerge: true,
     },
