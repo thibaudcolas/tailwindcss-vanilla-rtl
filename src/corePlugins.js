@@ -1,6 +1,6 @@
 /* eslint-disable */
 /**
- * Copy of https://github.com/tailwindlabs/tailwindcss/blob/v3.0.23/src/corePlugins.js,
+ * Copy of https://github.com/tailwindlabs/tailwindcss/blob/v3.0.24/src/corePlugins.js,
  * with Logical Properties changes applied,
  * so the whole file can be diffed to keep up with Tailwind core plugins upgrades.
  */
@@ -26,21 +26,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-// import fs from 'fs'
-// import * as path from 'path'
-// import postcss from 'postcss'
+/*
+import fs from 'fs'
+import * as path from 'path'
+import postcss from 'postcss'
+*/
 import createUtilityPlugin from 'tailwindcss/lib/util/createUtilityPlugin'
-// import buildMediaQuery from './util/buildMediaQuery'
-// import parseAnimationValue from './util/parseAnimationValue'
+/*
+import buildMediaQuery from './util/buildMediaQuery'
+import escapeClassName from './util/escapeClassName'
+import parseAnimationValue from './util/parseAnimationValue'
+*/
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
 import withAlphaVariable, { withAlphaValue } from 'tailwindcss/lib/util/withAlphaVariable'
 import toColorValue from 'tailwindcss/lib/util/toColorValue'
-// import isPlainObject from './util/isPlainObject'
-// import transformThemeValue from './util/transformThemeValue'
-// import { version as tailwindVersion } from '../package.json'
-// import log from './util/log'
+/*
+import isPlainObject from './util/isPlainObject'
+import transformThemeValue from './util/transformThemeValue'
+import { version as tailwindVersion } from '../package.json'
+import log from './util/log'
+*/
 import { normalizeScreens } from 'tailwindcss/lib/util/normalizeScreens'
-// import { formatBoxShadowValue, parseBoxShadowValue } from './util/parseBoxShadowValue'
+/*
+import { formatBoxShadowValue, parseBoxShadowValue } from './util/parseBoxShadowValue'
+*/
 
 /*
 export let variantPlugins = {
@@ -54,6 +63,10 @@ export let variantPlugins = {
     addVariant('file', '&::file-selector-button')
 
     addVariant('placeholder', '&::placeholder')
+
+    /*
+    addVariant('backdrop', '&::backdrop')
+
 
     addVariant('before', ({ container }) => {
       container.walkRules((rule) => {
@@ -146,6 +159,9 @@ export let variantPlugins = {
       'focus',
       'focus-visible',
       'active',
+      /*
+      'enabled',
+
       'disabled',
     ].map((variant) => (Array.isArray(variant) ? variant : [variant, `:${variant}`]))
 
@@ -200,7 +216,8 @@ export let variantPlugins = {
   },
 
   darkVariants: ({ config, addVariant }) => {
-    let mode = config('darkMode', 'media')
+    let [mode] = [].concat(config('darkMode', 'media'))
+
     if (mode === false) {
       mode = 'media'
       log.warn('darkmode-false', [
@@ -211,7 +228,10 @@ export let variantPlugins = {
     }
 
     if (mode === 'class') {
-      addVariant('dark', '.dark &')
+      addVariant('dark', `.dark &`)
+      /*
+      addVariant('dark', `${className} &`)
+
     } else if (mode === 'media') {
       addVariant('dark', '@media (prefers-color-scheme: dark)')
     }
@@ -587,6 +607,42 @@ export let corePlugins = {
     })
   },
 
+  /*
+  borderSpacing: ({ addDefaults, matchUtilities, theme }) => {
+    addDefaults('border-spacing', {
+      '--tw-border-spacing-x': 0,
+      '--tw-border-spacing-y': 0,
+    })
+
+    matchUtilities(
+      {
+        'border-spacing': (value) => {
+          return {
+            '--tw-border-spacing-x': value,
+            '--tw-border-spacing-y': value,
+            '@defaults border-spacing': {},
+            'border-spacing': 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+          }
+        },
+        'border-spacing-x': (value) => {
+          return {
+            '--tw-border-spacing-x': value,
+            '@defaults border-spacing': {},
+            'border-spacing': 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+          }
+        },
+        'border-spacing-y': (value) => {
+          return {
+            '--tw-border-spacing-y': value,
+            '@defaults border-spacing': {},
+            'border-spacing': 'var(--tw-border-spacing-x) var(--tw-border-spacing-y)',
+          }
+        },
+      },
+      { values: theme('borderSpacing') }
+    )
+  },
+
   transformOrigin: createUtilityPlugin('transformOrigin', [['origin', ['transformOrigin']]]),
   translate: createUtilityPlugin(
     'translate',
@@ -671,8 +727,8 @@ export let corePlugins = {
     })
   },
 
-  animation: ({ matchUtilities, theme, prefix }) => {
-    let prefixName = (name) => prefix(`.${name}`).slice(1)
+  animation: ({ matchUtilities, theme, config }) => {
+    let prefixName = (name) => `${config('prefix')}${escapeClassName(name)}`
     let keyframes = Object.fromEntries(
       Object.entries(theme('keyframes') ?? {}).map(([key, value]) => {
         return [key, { [`@keyframes ${prefixName(key)}`]: value }]
@@ -1629,6 +1685,10 @@ export let corePlugins = {
       '.text-center': { 'text-align': 'center' },
       '.text-right': { 'text-align': 'end' },
       '.text-justify': { 'text-align': 'justify' },
+      /*
+      '.text-start': { 'text-align': 'start' },
+      '.text-end': { 'text-align': 'end' },
+      */
     })
   },
   /*
@@ -2032,6 +2092,9 @@ export let corePlugins = {
   ringWidth: ({ matchUtilities, addDefaults, addUtilities, theme }) => {
     let ringOpacityDefault = theme('ringOpacity.DEFAULT', '0.5')
     let ringColorDefault = withAlphaValue(
+      /*
+      theme('ringColor')?.DEFAULT,
+
       theme('ringColor.DEFAULT'),
       ringOpacityDefault,
       `rgb(147 197 253 / ${ringOpacityDefault})`
@@ -2071,10 +2134,16 @@ export let corePlugins = {
     })
   },
 
-  ringColor: ({ matchUtilities, theme }) => {
+  ringColor: ({ matchUtilities, theme, corePlugins }) => {
     matchUtilities(
       {
         ring: (value) => {
+          if (!corePlugins('ringOpacity')) {
+            return {
+              '--tw-ring-color': toColorValue(value),
+            }
+          }
+
           return withAlphaVariable({
             color: value,
             property: '--tw-ring-color',
