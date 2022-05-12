@@ -177,3 +177,13 @@ This comparison table reviews utility class names across Tailwind plugins built 
 | **[Text Align](https://tailwindcss.com/docs/text-align)**         |                 |                     |
 | `text-right`                                                      | `text-end`      | `text-end`          |
 | `text-left`                                                       | `text-start`    | `text-start`        |
+
+## Keeping up with Tailwind releases
+
+1. Checkout the first commit: `git checkout 2aa1d21`.
+2. Copy the `corePlugins.js` file for that release, for example <https://github.com/tailwindlabs/tailwindcss/blob/v3.0.24/src/corePlugins.js>.
+3. Paste the official `corePlugins.js` into the repository’s corePlugins.js file.
+4. Generate a patch with `git diff > corePlugins.patch`.
+5. Go back to the main branch with `git checkout main`.
+6. Apply the patch with `git apply --3way --whitespace=fix corePlugins.patch`.
+7. Fix any conflicts or other issues (with closing comments in particular).
