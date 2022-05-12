@@ -6,7 +6,6 @@ import { corePlugins } from "./corePlugins";
  * Loading the overriden core plugins.
  */
 const vanillaRTL = plugin((helpers) => {
-  corePlugins.container(helpers);
   corePlugins.inset(helpers);
   corePlugins.margin(helpers);
   corePlugins.scrollMargin(helpers);
@@ -25,7 +24,6 @@ const vanillaRTL = plugin((helpers) => {
  * so we can replace them with RTL-aware equivalents.
  */
 vanillaRTL.disabledCorePlugins = {
-  container: false,
   inset: false,
   margin: false,
   scrollMargin: false,

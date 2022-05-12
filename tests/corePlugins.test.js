@@ -5,7 +5,6 @@ describe("corePlugins", () => {
   it("overrides a stable set of core plugins", () => {
     expect(Object.keys(overridenCorePlugins)).toMatchInlineSnapshot(`
       Array [
-        "container",
         "inset",
         "margin",
         "scrollMargin",

@@ -7,7 +7,6 @@ describe("tailwindcss-vanilla-rtl", () => {
         "borderColor": false,
         "borderRadius": false,
         "borderWidth": false,
-        "container": false,
         "divideWidth": false,
         "inset": false,
         "margin": false,

@@ -303,14 +303,8 @@ export let corePlugins = {
       ...preflightStyles.nodes,
     ])
   },
-  */
 
-  /**
-  * Logical Properties and Values: overriding defaults.
-  * Replaced `paddingLeft` with `paddingInlineStart`, `paddingRight` with `paddingInlineEnd`, `marginLeft` with `marginInlineStart`, `marginRight` with `marginInlineEnd`.
-  * See https://caniuse.com/css-logical-props.
-  */
-  container: (() => {
+   container: (() => {
     function extractMinWidths(breakpoints = []) {
       return breakpoints
         .flatMap((breakpoint) => breakpoint.values.map((breakpoint) => breakpoint.min))
@@ -368,8 +362,8 @@ export let corePlugins = {
         }
 
         return {
-          paddingInlineEnd: paddingConfig.padding,
-          paddingInlineStart: paddingConfig.padding,
+          paddingRight: paddingConfig.padding,
+          paddingLeft: paddingConfig.padding,
         }
       }
 
@@ -388,7 +382,7 @@ export let corePlugins = {
         {
           '.container': Object.assign(
             { width: '100%' },
-            theme('container.center', false) ? { marginInlineEnd: 'auto', marginInlineStart: 'auto' } : {},
+            theme('container.center', false) ? { marginRight: 'auto', marginLeft: 'auto' } : {},
             generatePaddingFor(0)
           ),
         },
@@ -396,7 +390,7 @@ export let corePlugins = {
       ])
     }
   })(),
-  /*
+
   accessibility: ({ addUtilities }) => {
     addUtilities({
       '.sr-only': {
