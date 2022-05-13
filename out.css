@@ -484,10 +484,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 1.5rem;
 }
 
-.max-w-md {
-  max-width: 28rem;
-}
-
 .flex-none {
   flex: none;
 }
@@ -571,8 +567,17 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
 }
 
+.border-r-8 {
+  border-inline-end-width: 8px;
+}
+
 .border-l-4 {
   border-inline-start-width: 4px;
+}
+
+.border-gray-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(107 114 128 / var(--tw-border-opacity));
 }
 
 .border-gray-300 {
@@ -601,17 +606,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 @media (min-width: 640px) {
-  .sm\:max-w-lg {
-    max-width: 32rem;
-  }
-
-  .sm\:mx-auto {
-    -webkit-margin-start: auto;
-            margin-inline-start: auto;
-    -webkit-margin-end: auto;
-            margin-inline-end: auto;
-  }
-
   .sm\:rounded-lg {
     border-radius: 0.5rem;
   }
@@ -621,5 +615,41 @@ Ensure the default browser behavior of the `hidden` attribute.
             padding-inline-start: 2.5rem;
     -webkit-padding-end: 2.5rem;
             padding-inline-end: 2.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:container {
+    width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .md\:container {
+      max-width: 640px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .md\:container {
+      max-width: 768px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .md\:container {
+      max-width: 1024px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .md\:container {
+      max-width: 1280px;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .md\:container {
+      max-width: 1536px;
+    }
   }
 }
