@@ -20,7 +20,7 @@
     "tailwindcss": "^3.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "16.2.4",
+    "@commitlint/cli": "16.3.0",
     "@commitlint/config-conventional": "16.2.4",
     "@swc/cli": "0.1.57",
     "@swc/core": "1.2.183",
