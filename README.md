@@ -34,7 +34,22 @@ That’s it. Since the plugin uses the same utility classes as Tailwind core (`m
 
 Browser support for CSS logical properties and values is still very recent. This plugin has full support for Safari 15, Chrome/Edge 89, and Firefox 68.
 
-We also support older browser versions (down to Safari 12.1, Chrome 69, Firefox 41), but with a few properties only working as expected for left-to-right languages:
+We also support older browser versions (down to Safari 14.1, Chrome 87, Firefox 63), but with a few properties only working as expected for left-to-right languages:
+
+- [border-radius](https://caniuse.com/?search=border-start-start-radius):
+  - macOS Safari 15 (2021-09-21) and up
+  - iOS Safari 15.1 (2021-09-21) and up
+  - Chrome 89 (2021-03-01) and up
+  - Edge 89 (2021-03-04) and up
+  - Firefox 66 (2019-03-19) and up
+- [scroll-padding](https://caniuse.com/?search=scroll-padding-inline-start):
+  - macOS Safari 15 (2021-09-21) and up
+  - iOS Safari 15.1 (2021-09-21) and up
+  - Chrome 69 (2018-09-04) and up
+  - Edge 79 (2020-01-15) and up
+  - Firefox 68 (2019-07-09) and up
+
+Two utilities in particular will only work in very recent browsers, with _no additional fallback styles for left-to-right languages_:
 
 - [`left` / `right` positioning](https://caniuse.com/?search=inset-inline-start):
   - macOS Safari 14.1 (2021-04-26) and up
@@ -42,15 +57,9 @@ We also support older browser versions (down to Safari 12.1, Chrome 69, Firefox 
   - Chrome 87 (2020-11-17) and up
   - Edge 87 (2020-11-20) and up
   - Firefox 63 (2018-10-23) and up
-- [border-radius](https://caniuse.com/?search=border-start-start-radius):
-  - macOS Safari 15 (2021-09-21) and up
-  - iOS Safari 15.1 (2021-09-21) and up
-  - Chrome 89 (2021-03-01) and up
-  - Edge 89 (2021-03-04) and up
-  - Firefox 66 (2019-03-19) and up
-- [scroll-margin](https://caniuse.com/?search=scroll-margin-inline-start) and [scroll-padding](https://caniuse.com/?search=scroll-padding-inline-start):
-  - macOS Safari 14.1 (2021-04-26) and up (Safari 15, 2021-09-21, for scroll-padding)
-  - iOS Safari 14.5 (2021-04-26) and up (Safari 15.1, 2021-09-21, for scroll-padding)
+- [scroll-margin](https://caniuse.com/?search=scroll-margin-inline-start):
+  - macOS Safari 14.1 (2021-04-26) and up
+  - iOS Safari 14.5 (2021-04-26) and up
   - Chrome 69 (2018-09-04) and up
   - Edge 79 (2020-01-15) and up
   - Firefox 68 (2019-07-09) and up
