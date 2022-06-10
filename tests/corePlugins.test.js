@@ -65,6 +65,7 @@ describe("corePlugins", () => {
         "flexBasis",
         "tableLayout",
         "borderCollapse",
+        "borderSpacing",
         "transformOrigin",
         "translate",
         "rotate",
