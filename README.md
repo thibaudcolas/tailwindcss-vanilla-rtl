@@ -6,9 +6,9 @@ Simple right-to-left (RTL) language support, switching vanilla Tailwind utilitie
 
 ## Usage
 
-This plugin overrides Tailwind v3 core’s utility classes, making it very straightforward to add RTL support. Have a look at the [browser support](#browser-support), [design decisions](#design-decisions), and [alternatives](#alternatives) to make sure this is the right fit.
+This plugin overrides Tailwind’s core’s utility classes, making it very straightforward to add RTL support. Have a look at the [browser support](#browser-support), [design decisions](#design-decisions), and [alternatives](#alternatives) to make sure this is the right fit.
 
-To use the plugin, install it, add it to the `plugins`, and disable the `corePlugins` it overrides.
+The plugin is compatible with Tailwind v3.1 and up. Install the package, add it to the `plugins`, and disable the `corePlugins` it overrides.
 
 ```bash
 npm install tailwindcss-logical --save-dev
@@ -124,7 +124,7 @@ Since tailwindcss-logical uses separate classes, it’s possible to mix and matc
 
 ### Future Tailwind support
 
-Follow the conversation in Tailwind discussion [#1483 \[Feature Proposal\] CSS Logical Properties (margin-inline-start...)](https://github.com/tailwindlabs/tailwindcss/discussions/1483), we’ll see where this goes.
+Follow the conversation in Tailwind discussion [#1483 \[Feature Proposal\] CSS Logical Properties](https://github.com/tailwindlabs/tailwindcss/discussions/1483), we’ll see where this goes.
 
 ### Comparison table
 
@@ -180,10 +180,15 @@ This comparison table reviews utility class names across Tailwind plugins built 
 
 ## Keeping up with Tailwind releases
 
-1. Checkout the first commit: `git checkout 2aa1d21`.
+This project’s plugins definition is a copy-paste of Tailwind’s `corePlugins.js`, with the least possible changes to use logical properties and values.
+
+Parts of `corePlugins.js` which shouldn’t be redefined by this plugin are commented out, so the line-by-line diff with the official file is as small as possible. This makes it straightforward to keep this plugin compatible with releases, by making a diff of the changes and applying them the customised `corePlugins.js`.
+
+1. Checkout the first commit, where `corePlugins.js` was initially copied as-is: `git checkout 2aa1d21`.
 2. Copy the `corePlugins.js` file for that release, for example <https://github.com/tailwindlabs/tailwindcss/blob/v3.0.24/src/corePlugins.js>.
 3. Paste the official `corePlugins.js` into the repository’s corePlugins.js file.
 4. Generate a patch with `git diff > corePlugins.patch`.
 5. Go back to the main branch with `git checkout main`.
 6. Apply the patch with `git apply --3way --whitespace=fix corePlugins.patch`.
 7. Fix any conflicts or other issues (with closing comments in particular).
+8. Review all occurrences of `left` and `right` in the file to double check they are all accounted for.
