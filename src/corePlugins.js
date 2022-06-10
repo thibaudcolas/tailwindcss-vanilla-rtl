@@ -455,16 +455,16 @@ export let corePlugins = {
   inset: createUtilityPlugin(
     'inset',
     [
-      ['inset', ['top', 'right', 'inset-inline-end', 'bottom', 'left', 'inset-inline-start']],
+      ['inset', ['top', 'inset-inline-end', 'bottom', 'inset-inline-start']],
       [
-        ['inset-x', ['left', 'inset-inline-start', 'right', 'inset-inline-end']],
+        ['inset-x', ['inset-inline-start', 'inset-inline-end']],
         ['inset-y', ['top', 'bottom']],
       ],
       [
         ['top', ['top']],
-        ['right', ['right', 'inset-inline-end']],
+        ['right', ['inset-inline-end']],
         ['bottom', ['bottom']],
-        ['left', ['left', 'inset-inline-start']],
+        ['left', ['inset-inline-start']],
       ],
     ],
     { supportsNegativeValues: true }
