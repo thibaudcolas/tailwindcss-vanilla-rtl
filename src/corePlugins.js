@@ -447,9 +447,8 @@ export let corePlugins = {
   },
   */
   /**
-  * Logical Properties and Values: added with fallback.
-  * Added `inset-inline-start` after `left`, `inset-inline-end` after `right`.
-  * Retaining fallbacks because browser support isn’t entirely there.
+  * Logical Properties and Values: overriding defaults.
+  * Replaced `left` with `inset-inline-start` and `right` with `inset-inline-end`.
   * See https://caniuse.com/?search=inset-inline-start.
   */
   inset: createUtilityPlugin(
@@ -869,9 +868,8 @@ export let corePlugins = {
   },
   */
   /**
-  * Logical Properties and Values: added with fallback.
-  * Added `scroll-margin-inline-start` after `scroll-margin-left`, `scroll-margin-inline-end` after `scroll-margin-right`.
-  * Retaining fallbacks because browser support isn’t entirely there.
+  * Logical Properties and Values: overriding defaults.
+  * Replaced `scroll-margin-left` with `scroll-margin-inline-start` and `scroll-margin-right` with `scroll-margin-inline-end`.
   * See https://caniuse.com/?search=scroll-margin-inline-start.
   */
   scrollMargin: createUtilityPlugin(
@@ -879,14 +877,14 @@ export let corePlugins = {
     [
       ['scroll-m', ['scroll-margin']],
       [
-        ['scroll-mx', ['scroll-margin-left', 'scroll-margin-inline-start', 'scroll-margin-right', 'scroll-margin-inline-end']],
+        ['scroll-mx', ['scroll-margin-inline-start', 'scroll-margin-inline-end']],
         ['scroll-my', ['scroll-margin-top', 'scroll-margin-bottom']],
       ],
       [
         ['scroll-mt', ['scroll-margin-top']],
-        ['scroll-mr', ['scroll-margin-right', 'scroll-margin-inline-end']],
+        ['scroll-mr', ['scroll-margin-inline-end']],
         ['scroll-mb', ['scroll-margin-bottom']],
-        ['scroll-ml', ['scroll-margin-left', 'scroll-margin-inline-start']],
+        ['scroll-ml', ['scroll-margin-inline-start']],
       ],
     ],
     { supportsNegativeValues: true }
