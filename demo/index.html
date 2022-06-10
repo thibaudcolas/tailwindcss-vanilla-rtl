@@ -25,7 +25,7 @@
       </defs>
     </svg>
     <h1
-      class="text-2xl mt-[10vh] px-4 pt-10 pb-8 md:container sm:rounded-lg sm:px-10 mx-auto"
+      class="text-2xl mt-[10vh] px-4 pt-10 pb-8 md:container rounded-lg mx-auto"
     >
       <a
         class="underline text-sky-700"
@@ -33,136 +33,223 @@
         >tailwindcss-vanilla-rtl</a
       >
     </h1>
-    <p class="px-4 pt-10 pb-8 md:container sm:rounded-lg sm:px-10 mx-auto">
-      Simple right-to-left (RTL) language support, switching vanilla Tailwind
-      utilities to
-      <a href="https://rtlstyling.com/posts/rtl-styling#css-logical-properties"
-        >CSS logical properties and values</a
-      >.
-    </p>
-    <div
-      dir="ltr"
-      lang="en"
-      class="px-4 pt-10 pb-8 border-r-8 border-gray-500 bg-white shadow-sm md:container sm:rounded-lg sm:px-10 mx-auto"
+    <section class="px-4 pt-10 pb-8 md:container rounded-lg mx-auto">
+      <p>
+        Simple right-to-left (RTL) language support, switching vanilla Tailwind
+        utilities to
+        <a
+          href="https://rtlstyling.com/posts/rtl-styling#css-logical-properties"
+          >CSS logical properties and values</a
+        >.
+      </p>
+    </section>
+    <section
+      class="px-4 pt-10 pb-8 md:container rounded-lg mx-auto"
+      aria-labelledby="how-it-works"
     >
-      <blockquote class="border-l-4 border-gray-300 pl-2">
-        Let the beauty of what you love be what you do.
-      </blockquote>
-      <ul class="space-y-2 mt-4">
-        <li>
-          <svg class="w-6 h-6 inline-block align-bottom mr-2">
-            <use href="#checkmark"></use></svg
-          >English
-        </li>
-        <li>
-          <svg class="w-6 h-6 inline-block align-bottom mr-2">
-            <use href="#checkmark"></use></svg
-          >Arabic
-        </li>
-        <li>
-          <svg class="w-6 h-6 inline-block align-bottom mr-2">
-            <use href="#checkmark"></use></svg
-          >Hebrew
-        </li>
-        <li>
-          <svg class="w-6 h-6 inline-block align-bottom mr-2">
-            <use href="#checkmark"></use></svg
-          >Persian
-        </li>
-      </ul>
-    </div>
-    <div
-      dir="rtl"
-      lang="ar"
-      class="px-4 pt-10 pb-8 border-r-8 border-gray-500 bg-white shadow-sm md:container sm:rounded-lg sm:px-10 mx-auto"
+      <h2 id="how-it-works" class="text-xl pb-4">How it works</h2>
+      <p>
+        This plugin overrides core Tailwind plugins, to replace the physical
+        properties and values with logical equivalents.<br />
+        Class names are kept as-is, so any project can add RTL support without
+        changing any styles.<br />
+        Here’s an example:
+      </p>
+      <pre><code>
+&lt;blockquote dir="rtl" lang="en" class="border-l-4 border-gray-300 pl-2"&gt;
+  Let the beauty of what you love be what you do.
+&lt;/blockquote&gt;
+&lt;blockquote dir="rtl" lang="ar" class="border-l-4 border-gray-300 pl-2"&gt;
+    ما تبحث عنه يبحث عنك
+&lt;/blockquote&gt;
+&lt;blockquote dir="rtl" lang="he" class="border-l-4 border-gray-300 pl-2"&gt;
+  האהבה היא אוקיינוס שאין לו התחלה ואין לו סוף.
+&lt;/blockquote&gt;
+&lt;blockquote dir="rtl" lang="fa" class="border-l-4 border-gray-300 pl-2"&gt;
+  از محبت، نار نوری می‌شود// وز محبت، دیو حوری می‌شود
+&lt;/blockquote&gt;
+      </code></pre>
+      <p>
+        Aside from specifying their <code>dir</code> and
+        <code>lang</code> attributes, all blockquotes are written in a single
+        direction – which then appears differently based on the writing
+        direction.
+      </p>
+      <p>
+        View the
+        <a
+          class="underline"
+          href="https://github.com/thibaudcolas/tailwindcss-vanilla-rtl"
+          >project documentation on GitHub</a
+        >
+        to learn more.
+      </p>
+    </section>
+    <section
+      class="px-4 pt-10 pb-8 md:container rounded-lg mx-auto"
+      aria-labelledby="demo"
     >
-      <blockquote class="border-l-4 border-gray-300 pl-2">
-        ما تبحث عنه يبحث عنك
-      </blockquote>
-      <ul class="space-y-2 mt-4">
-        <li>
-          <svg class="w-6 h-6 inline-block align-bottom mr-2">
-            <use href="#checkmark"></use></svg
-          >إنجليزي
-        </li>
-        <li>
-          <svg class="w-6 h-6 inline-block align-bottom mr-2">
-            <use href="#checkmark"></use></svg
-          >العربية
-        </li>
-        <li>
-          <svg class="w-6 h-6 inline-block align-bottom mr-2">
-            <use href="#checkmark"></use></svg
-          >اللغة العِبْرِيَّة
-        </li>
-        <li>
-          <svg class="w-6 h-6 inline-block align-bottom mr-2">
-            <use href="#checkmark"></use></svg
-          >اللُغَةُ الْفَارِسِيَّةُ
-        </li>
-      </ul>
-    </div>
-    <div
-      dir="rtl"
-      lang="he"
-      class="px-4 pt-10 pb-8 border-r-8 border-gray-500 bg-white shadow-sm md:container sm:rounded-lg sm:px-10 mx-auto"
-    >
-      <blockquote class="border-l-4 border-gray-300 pl-2">
-        האהבה היא אוקיינוס שאין לו התחלה ואין לו סוף.
-      </blockquote>
-      <ul class="space-y-2 mt-4">
-        <li>
-          <svg class="w-6 h-6 inline-block align-bottom mr-2">
-            <use href="#checkmark"></use></svg
-          >אנגלית
-        </li>
-        <li>
-          <svg class="w-6 h-6 inline-block align-bottom mr-2">
-            <use href="#checkmark"></use></svg
-          >עֲרָבִית
-        </li>
-        <li>
-          <svg class="w-6 h-6 inline-block align-bottom mr-2">
-            <use href="#checkmark"></use></svg
-          >עִבְרִית
-        </li>
-        <li>
-          <svg class="w-6 h-6 inline-block align-bottom mr-2">
-            <use href="#checkmark"></use></svg
-          >פרסית
-        </li>
-      </ul>
-    </div>
-    <div
-      dir="rtl"
-      lang="fa"
-      class="px-4 pt-10 pb-8 border-r-8 border-gray-500 bg-white shadow-sm md:container sm:rounded-lg sm:px-10 mx-auto"
-    >
-      <blockquote class="border-l-4 border-gray-300 pl-2">
-        از محبت، نار نوری می‌شود// وز محبت، دیو حوری می‌شود
-      </blockquote>
-      <ul class="space-y-2 mt-4">
-        <li>
-          <svg class="w-6 h-6 inline-block align-bottom mr-2">
-            <use href="#checkmark"></use></svg
-          >انگلیسی
-        </li>
-        <li>
-          <svg class="w-6 h-6 inline-block align-bottom mr-2">
-            <use href="#checkmark"></use></svg
-          >عربی
-        </li>
-        <li>
-          <svg class="w-6 h-6 inline-block align-bottom mr-2">
-            <use href="#checkmark"></use></svg
-          >عبری
-        </li>
-        <li>
-          <svg class="w-6 h-6 inline-block align-bottom mr-2">
-            <use href="#checkmark"></use></svg
-          >فارسی
-        </li>
-      </ul>
-    </div>
+      <h2 id="demo" class="text-xl pb-4">Demo</h2>
+      <div
+        id="english"
+        dir="ltr"
+        lang="en"
+        class="px-4 pt-10 pb-8 mb-8 max-w-sm border-r-8 border-gray-500 bg-white shadow-sm rounded-lg mx-auto"
+      >
+        <blockquote class="border-l-4 border-gray-300 pl-2">
+          Let the beauty of what you love be what you do.
+        </blockquote>
+        <ul class="space-y-2 mt-4">
+          <li>
+            <a href="#english" class="underline">
+              <svg class="w-6 h-6 inline-block align-bottom mr-2">
+                <use href="#checkmark"></use></svg
+              >English</a
+            >
+          </li>
+          <li>
+            <a href="#arabic" class="underline">
+              <svg class="w-6 h-6 inline-block align-bottom mr-2">
+                <use href="#checkmark"></use></svg
+              >Arabic</a
+            >
+          </li>
+          <li>
+            <a href="#hebrew" class="underline">
+              <svg class="w-6 h-6 inline-block align-bottom mr-2">
+                <use href="#checkmark"></use></svg
+              >Hebrew</a
+            >
+          </li>
+          <li>
+            <a href="#persian" class="underline">
+              <svg class="w-6 h-6 inline-block align-bottom mr-2">
+                <use href="#checkmark"></use></svg
+              >Persian</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div
+        id="arabic"
+        dir="rtl"
+        lang="ar"
+        class="px-4 pt-10 pb-8 mb-8 max-w-sm border-r-8 border-gray-500 bg-white shadow-sm rounded-lg mx-auto"
+      >
+        <blockquote class="border-l-4 border-gray-300 pl-2">
+          ما تبحث عنه يبحث عنك
+        </blockquote>
+        <ul class="space-y-2 mt-4">
+          <li>
+            <a href="#english" class="underline">
+              <svg class="w-6 h-6 inline-block align-bottom mr-2">
+                <use href="#checkmark"></use></svg
+              >إنجليزي
+            </a>
+          </li>
+          <li>
+            <a href="#arabic" class="underline">
+              <svg class="w-6 h-6 inline-block align-bottom mr-2">
+                <use href="#checkmark"></use></svg
+              >العربية
+            </a>
+          </li>
+          <li>
+            <a href="#hebrew" class="underline">
+              <svg class="w-6 h-6 inline-block align-bottom mr-2">
+                <use href="#checkmark"></use></svg
+              >اللغة العِبْرِيَّة
+            </a>
+          </li>
+          <li>
+            <a href="#persian" class="underline">
+              <svg class="w-6 h-6 inline-block align-bottom mr-2">
+                <use href="#checkmark"></use></svg
+              >اللُغَةُ الْفَارِسِيَّةُ
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div
+        id="hebrew"
+        dir="rtl"
+        lang="he"
+        class="px-4 pt-10 pb-8 mb-8 max-w-sm border-r-8 border-gray-500 bg-white shadow-sm rounded-lg mx-auto"
+      >
+        <blockquote class="border-l-4 border-gray-300 pl-2">
+          האהבה היא אוקיינוס שאין לו התחלה ואין לו סוף.
+        </blockquote>
+        <ul class="space-y-2 mt-4">
+          <li>
+            <a href="#english" class="underline">
+              <svg class="w-6 h-6 inline-block align-bottom mr-2">
+                <use href="#checkmark"></use></svg
+              >אנגלית
+            </a>
+          </li>
+          <li>
+            <a href="#arabic" class="underline">
+              <svg class="w-6 h-6 inline-block align-bottom mr-2">
+                <use href="#checkmark"></use></svg
+              >עֲרָבִית
+            </a>
+          </li>
+          <li>
+            <a href="#hebrew" class="underline">
+              <svg class="w-6 h-6 inline-block align-bottom mr-2">
+                <use href="#checkmark"></use></svg
+              >עִבְרִית
+            </a>
+          </li>
+          <li>
+            <a href="#persian" class="underline">
+              <svg class="w-6 h-6 inline-block align-bottom mr-2">
+                <use href="#checkmark"></use></svg
+              >פרסית
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div
+        id="persian"
+        dir="rtl"
+        lang="fa"
+        class="px-4 pt-10 pb-8 mb-8 max-w-sm border-r-8 border-gray-500 bg-white shadow-sm rounded-lg mx-auto"
+      >
+        <blockquote class="border-l-4 border-gray-300 pl-2">
+          از محبت، نار نوری می‌شود// وز محبت، دیو حوری می‌شود
+        </blockquote>
+        <ul class="space-y-2 mt-4">
+          <li>
+            <a href="#english" class="underline">
+              <svg class="w-6 h-6 inline-block align-bottom mr-2">
+                <use href="#checkmark"></use></svg
+              >انگلیسی
+            </a>
+          </li>
+          <li>
+            <a href="#arabic" class="underline">
+              <svg class="w-6 h-6 inline-block align-bottom mr-2">
+                <use href="#checkmark"></use></svg
+              >عربی
+            </a>
+          </li>
+          <li>
+            <a href="#hebrew" class="underline">
+              <svg class="w-6 h-6 inline-block align-bottom mr-2">
+                <use href="#checkmark"></use></svg
+              >عبری
+            </a>
+          </li>
+          <li>
+            <a href="#persian" class="underline">
+              <svg class="w-6 h-6 inline-block align-bottom mr-2">
+                <use href="#checkmark"></use></svg
+              >فارسی
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
   </body>
 </html>
