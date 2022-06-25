@@ -23,7 +23,7 @@
     "@commitlint/cli": "17.0.2",
     "@commitlint/config-conventional": "17.0.2",
     "@swc/cli": "0.1.57",
-    "@swc/core": "1.2.204",
+    "@swc/core": "1.2.205",
     "@swc/jest": "0.2.21",
     "@swc/register": "0.1.10",
     "eslint": "8.18.0",
