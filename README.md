@@ -6,7 +6,7 @@ Simple right-to-left (RTL) language support, switching vanilla Tailwind utilitie
 
 ## Usage
 
-This plugin overrides Tailwind’s core’s utility classes, making it very straightforward to add RTL support. Have a look at the [browser support](#browser-support), [design decisions](#design-decisions), and [alternatives](#alternatives) to make sure this is the right fit.
+This plugin overrides Tailwind’s core’s utility classes, making it very straightforward to add RTL support. Have a look at the [browser support](#browser-support), [design decisions](#design-decisions), and [alternatives](#alternatives) to confirm which is the right fit for your project.
 
 The plugin is compatible with Tailwind v3.1 and up. Install the package, add it to the `plugins`, and disable the `corePlugins` it overrides.
 
