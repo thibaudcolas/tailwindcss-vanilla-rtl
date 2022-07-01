@@ -49,7 +49,9 @@ We also support older browser versions (down to Safari 14.1, Chrome 87, Firefox 
   - Edge 79 (2020-01-15) and up
   - Firefox 68 (2019-07-09) and up
 
-Two utilities in particular will only work in very recent browsers, with _no additional fallback styles for left-to-right languages_:
+In those two cases, we add fallbacks for LTR languages only. To provide full support for RTL languages nonetheless, consider using [postcss-logical](https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-logical) to automatically create fallbacks for all scenarios.
+
+Two other utilities in particular will only work in very recent browsers, with _no additional fallback styles for left-to-right languages_:
 
 - [`left` / `right` positioning](https://caniuse.com/?search=inset-inline-start):
   - macOS Safari 14.1 (2021-04-26) and up
@@ -63,8 +65,6 @@ Two utilities in particular will only work in very recent browsers, with _no add
   - Chrome 69 (2018-09-04) and up
   - Edge 79 (2020-01-15) and up
   - Firefox 68 (2019-07-09) and up
-
-In those three cases, we add fallbacks for LTR languages only. To provide full support for RTL languages nonetheless, consider using [postcss-logical](https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-logical) to automatically create fallbacks for all scenarios.
 
 ## Design decisions
 
@@ -96,7 +96,7 @@ module.exports = {
 
 ### LTR-only fallbacks
 
-For the three properties mentioned in [Browser support](#browser-support), we only provide fallbacks for LTR languages. This is done to simplify maintenance of this plugin, and because [postcss-logical](https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-logical) is a great way to add thorough fallbacks for projects needing it.
+For the four properties mentioned in [Browser support](#browser-support), we only provide fallbacks for two, and only for LTR languages. This is done to simplify maintenance of this plugin, and because [postcss-logical](https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-logical) is a great way to add thorough fallbacks for projects needing it.
 
 Note postcss-logical will create styles with `[dir=rtl]` and `[dir=ltr]` attribute selectors, which will have a higher specificity than single-class utilities, and risk behaving differently when combined with non-utility CSS.
 
