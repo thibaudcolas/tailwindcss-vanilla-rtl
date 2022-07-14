@@ -11,7 +11,7 @@ This plugin overrides Tailwind’s core’s utility classes, making it very stra
 The plugin is compatible with Tailwind v3.1 and up. Install the package, add it to the `plugins`, and disable the `corePlugins` it overrides.
 
 ```bash
-npm install tailwindcss-logical --save-dev
+npm install tailwindcss-vanilla-rtl --save-dev
 ```
 
 ```js
