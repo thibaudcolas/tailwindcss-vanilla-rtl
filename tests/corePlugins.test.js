@@ -4,7 +4,7 @@ import corePluginsList from "tailwindcss/lib/corePluginList";
 describe("corePlugins", () => {
   it("overrides a stable set of core plugins", () => {
     expect(Object.keys(overridenCorePlugins)).toMatchInlineSnapshot(`
-      Array [
+      [
         "inset",
         "margin",
         "scrollMargin",
@@ -30,7 +30,7 @@ describe("corePlugins", () => {
 
   it("official corePluginsList is stable", () => {
     expect(corePluginsList).toMatchInlineSnapshot(`
-      Array [
+      [
         "preflight",
         "container",
         "accessibility",
