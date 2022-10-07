@@ -1,30 +1,8 @@
 /* eslint-disable */
 /**
- * Copy of https://github.com/tailwindlabs/tailwindcss/blob/v3.1.0/src/corePlugins.js,
+ * Copy of https://github.com/tailwindlabs/tailwindcss/blob/v3.1.8/src/corePlugins.js,
  * with Logical Properties changes applied,
  * so the whole file can be diffed to keep up with Tailwind core plugins upgrades.
- */
-/**
- * MIT License
- * Copyright (c) Tailwind Labs, Inc
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
  */
 /*
 import fs from 'fs'
@@ -45,10 +23,9 @@ import isPlainObject from './util/isPlainObject'
 import transformThemeValue from './util/transformThemeValue'
 import { version as tailwindVersion } from '../package.json'
 import log from './util/log'
-*/
 import { normalizeScreens } from 'tailwindcss/lib/util/normalizeScreens'
-/*
 import { formatBoxShadowValue, parseBoxShadowValue } from './util/parseBoxShadowValue'
+import { removeAlphaVariables } from './util/removeAlphaVariables'
 import { flagEnabled } from './featureFlags'
 */
 
@@ -58,7 +35,19 @@ export let variantPlugins = {
     addVariant('first-letter', '&::first-letter')
     addVariant('first-line', '&::first-line')
 
-    addVariant('marker', ['& *::marker', '&::marker'])
+    addVariant('marker', [
+      ({ container }) => {
+        removeAlphaVariables(container, ['--tw-text-opacity'])
+
+        return '& *::marker'
+      },
+      ({ container }) => {
+        removeAlphaVariables(container, ['--tw-text-opacity'])
+
+        return '&::marker'
+      },
+    ])
+
     addVariant('selection', ['& *::selection', '&::selection'])
 
     addVariant('file', '&::file-selector-button')
@@ -114,21 +103,11 @@ export let variantPlugins = {
       [
         'visited',
         ({ container }) => {
-          let toRemove = ['--tw-text-opacity', '--tw-border-opacity', '--tw-bg-opacity']
-
-          container.walkDecls((decl) => {
-            if (toRemove.includes(decl.prop)) {
-              decl.remove()
-
-              return
-            }
-
-            for (const varName of toRemove) {
-              if (decl.value.includes(`/ var(${varName})`)) {
-                decl.value = decl.value.replace(`/ var(${varName})`, '')
-              }
-            }
-          })
+          removeAlphaVariables(container, [
+            '--tw-text-opacity',
+            '--tw-border-opacity',
+            '--tw-bg-opacity',
+          ])
 
           return '&:visited'
         },
@@ -1717,7 +1696,7 @@ export let corePlugins = {
       {
         text: (value) => {
           let [fontSize, options] = Array.isArray(value) ? value : [value]
-          let { lineHeight, letterSpacing } = isPlainObject(options)
+          let { lineHeight, letterSpacing, fontWeight } = isPlainObject(options)
             ? options
             : { lineHeight: options }
 
@@ -1725,6 +1704,7 @@ export let corePlugins = {
             'font-size': fontSize,
             ...(lineHeight === undefined ? {} : { 'line-height': lineHeight }),
             ...(letterSpacing === undefined ? {} : { 'letter-spacing': letterSpacing }),
+            ...(fontWeight === undefined ? {} : { 'font-weight': fontWeight }),
           }
         },
       },

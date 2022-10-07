@@ -194,10 +194,10 @@ This project’s plugins definition is a copy-paste of Tailwind’s `corePlugins
 Parts of `corePlugins.js` which shouldn’t be redefined by this plugin are commented out, so the line-by-line diff with the official file is as small as possible. This makes it straightforward to keep this plugin compatible with releases, by making a diff of the changes and applying them the customised `corePlugins.js`.
 
 1. Checkout the first commit, where `corePlugins.js` was initially copied as-is: `git checkout 2aa1d21`.
-2. Copy the `corePlugins.js` file for that release, for example <https://github.com/tailwindlabs/tailwindcss/blob/v3.0.24/src/corePlugins.js>.
-3. Paste the official `corePlugins.js` into the repository’s corePlugins.js file.
+2. Copy the `corePlugins.js` file for that release, for example `wget https://raw.githubusercontent.com/tailwindlabs/tailwindcss/v3.1.8/src/corePlugins.js`.
+3. Paste the official `corePlugins.js` into the repository’s corePlugins.js file: `cp corePlugins.js src/`
 4. Generate a patch with `git diff > corePlugins.patch`.
-5. Go back to the main branch with `git checkout main`.
+5. Go back to the main branch with `git checkout -- src/corePlugins.js && git checkout main`.
 6. Apply the patch with `git apply --3way --whitespace=fix corePlugins.patch`.
 7. Fix any conflicts or other issues (with closing comments in particular).
 8. Review all occurrences of `left` and `right` in the file to double check they are all accounted for.
