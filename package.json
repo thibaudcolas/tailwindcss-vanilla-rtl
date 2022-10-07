@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "author": "Thibaud Colas",
   "license": "MIT",
-  "description": "Simple right-to-left (RTL) language support, switching vanilla Tailwind utilities to CSS logical properties and values",
+  "description": "Simple right-to-left (RTL) language support for Tailwind, switching vanilla utilities to CSS logical properties and values",
   "homepage": "https://github.com/thibaudcolas/tailwindcss-vanilla-rtl",
   "main": "./dist/index.js",
   "files": [

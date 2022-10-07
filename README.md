@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/tailwindcss-vanilla-rtl.svg)](https://www.npmjs.com/package/tailwindcss-vanilla-rtl) [![Build status](https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/workflows/CI/badge.svg)](https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/actions)
 
-Simple right-to-left (RTL) language support, switching vanilla Tailwind utilities to [CSS logical properties and values](https://rtlstyling.com/posts/rtl-styling#css-logical-properties).
+Simple right-to-left (RTL) language support for Tailwind, switching vanilla utilities to [CSS logical properties and values](https://rtlstyling.com/posts/rtl-styling#css-logical-properties).
 
 ## Usage
 
