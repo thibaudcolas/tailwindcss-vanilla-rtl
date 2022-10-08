@@ -43,6 +43,6 @@
     "lint": "npm run lint:js && npm run lint:format",
     "test": "jest",
     "test:watch": "jest --watch",
-    "report:package": "npm pack --loglevel notice 2>&1 >/dev/null | sed -e 's/^npm notice //' && rm *.tgz"
+    "report:package": "npm pack --dry-run --loglevel notice 2>&1 >/dev/null | sed -e 's/^npm notice //'"
   }
 }
