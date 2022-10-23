@@ -1,6 +1,6 @@
 {
   "name": "tailwindcss-vanilla-rtl",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "Thibaud Colas",
   "license": "MIT",
   "description": "Simple right-to-left (RTL) language support for Tailwind, switching vanilla utilities to CSS logical properties and values",
