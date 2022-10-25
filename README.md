@@ -8,7 +8,7 @@ Simple right-to-left (RTL) language support for Tailwind, switching vanilla util
 
 This plugin overrides Tailwind’s core’s utility classes, making it very straightforward to add RTL support. Have a look at the [browser support](#browser-support), [design decisions](#design-decisions), and [alternatives](#alternatives) to confirm which is the right fit for your project.
 
-The plugin is compatible with Tailwind v3.1 and up. Install the package, add it to the `plugins`, and disable the `corePlugins` it overrides.
+Install the package, add it to the `plugins`, and disable the `corePlugins` it overrides.
 
 ```bash
 npm install tailwindcss-vanilla-rtl --save-dev
@@ -29,6 +29,8 @@ module.exports = {
 ```
 
 That’s it. Since the plugin uses the same utility classes as Tailwind core (`ml-4`, `px-10`, etc.), there are no new utilities to learn, no code to change.
+
+The plugin is compatible with Tailwind v3.2 and up. For compatibility with older releases of Tailwind (starting with v3.0), use older releases of the package. See our [CHANGELOG](https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/blob/main/CHANGELOG.md) to learn which release is compatible with each version of Tailwind.
 
 ## Browser support
 
