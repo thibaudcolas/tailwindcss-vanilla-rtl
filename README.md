@@ -34,9 +34,9 @@ The plugin is compatible with Tailwind v3.2 and up. For compatibility with older
 
 ## Browser support
 
-Browser support for CSS logical properties and values is still very recent. This plugin has full support for Safari 15, Chrome/Edge 89, and Firefox 68.
+Browser support for CSS logical properties and values is somewhat recent. This plugin has full support for Safari 15, Chrome/Edge 89, and Firefox 68.
 
-We also support older browser versions (down to Safari 14.1, Chrome 87, Firefox 63), but with a few properties only working as expected for left-to-right languages:
+To provide full support for RTL languages, consider using [postcss-logical](https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-logical). Note that postcss-logical will create styles with `[dir=rtl]` and `[dir=ltr]` attribute selectors, which will have a higher specificity than single-class utilities, and risk behaving differently when combined with non-utility CSS.
 
 - [border-radius](https://caniuse.com/?search=border-start-start-radius):
   - macOS Safari 15 (2021-09-21) and up
@@ -50,11 +50,6 @@ We also support older browser versions (down to Safari 14.1, Chrome 87, Firefox 
   - Chrome 69 (2018-09-04) and up
   - Edge 79 (2020-01-15) and up
   - Firefox 68 (2019-07-09) and up
-
-In those two cases, we add fallbacks for LTR languages only. To provide full support for RTL languages nonetheless, consider using [postcss-logical](https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-logical) to automatically create fallbacks for all scenarios.
-
-Two other utilities in particular will only work in very recent browsers, with _no additional fallback styles for left-to-right languages_:
-
 - [`left` / `right` positioning](https://caniuse.com/?search=inset-inline-start):
   - macOS Safari 14.1 (2021-04-26) and up
   - iOS Safari 14.5 (2021-04-26) and up
@@ -95,12 +90,6 @@ module.exports = {
   },
 };
 ```
-
-### LTR-only fallbacks
-
-For the four properties mentioned in [Browser support](#browser-support), we only provide fallbacks for two, and only for LTR languages. This is done to simplify maintenance of this plugin, and because [postcss-logical](https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-logical) is a great way to add thorough fallbacks for projects needing it.
-
-Note postcss-logical will create styles with `[dir=rtl]` and `[dir=ltr]` attribute selectors, which will have a higher specificity than single-class utilities, and risk behaving differently when combined with non-utility CSS.
 
 ### Tailwind corePlugins copy-paste
 
