@@ -1,8 +1,8 @@
-import pluginFn from "../src/index";
+import vanillaRTL from "../src/index";
 
 describe("tailwindcss-vanilla-rtl", () => {
   it("disables a stable set of core plugins", () => {
-    expect(pluginFn.disabledCorePlugins).toMatchInlineSnapshot(`
+    expect(vanillaRTL.disabledCorePlugins).toMatchInlineSnapshot(`
       {
         "borderColor": false,
         "borderRadius": false,

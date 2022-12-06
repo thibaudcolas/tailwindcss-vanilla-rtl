@@ -1,6 +1,6 @@
 import postcss from "postcss";
-import vanillaRTL from "../dist";
 import tailwindcss from "tailwindcss";
+import vanillaRTL from "../src/index";
 
 const utilities = [
   "mx-0",
