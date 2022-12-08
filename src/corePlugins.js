@@ -1070,7 +1070,7 @@ export let corePlugins = {
   ),
 
   /**
-  * Logical Properties and Values: added with fallback.
+  * Logical Properties and Values: overriding defaults.
   * Replaced `scroll-padding-left` with `scroll-padding-inline-start` and `scroll-padding-right` with `scroll-padding-inline-end`.
   * See https://caniuse.com/?search=scroll-padding-inline-start.
   */
