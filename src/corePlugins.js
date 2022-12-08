@@ -1070,22 +1070,21 @@ export let corePlugins = {
   ),
 
   /**
-  * Logical Properties and Values: added with fallback.
-  * Added `scroll-padding-inline-start` after `scroll-padding-left`, `scroll-padding-inline-end` after `scroll-padding-right`.
-  * Retaining fallbacks because browser support isn’t entirely there.
+  * Logical Properties and Values: overriding defaults.
+  * Replaced `scroll-padding-left` with `scroll-padding-inline-start` and `scroll-padding-right` with `scroll-padding-inline-end`.
   * See https://caniuse.com/?search=scroll-padding-inline-start.
   */
   scrollPadding: createUtilityPlugin('scrollPadding', [
     ['scroll-p', ['scroll-padding']],
     [
-      ['scroll-px', ['scroll-padding-left', 'scroll-padding-inline-start', 'scroll-padding-right', 'scroll-padding-inline-end']],
+      ['scroll-px', ['scroll-padding-inline-start', 'scroll-padding-inline-end']],
       ['scroll-py', ['scroll-padding-top', 'scroll-padding-bottom']],
     ],
     [
       ['scroll-pt', ['scroll-padding-top']],
-      ['scroll-pr', ['scroll-padding-right', 'scroll-padding-inline-end']],
+      ['scroll-pr', ['scroll-padding-inline-end']],
       ['scroll-pb', ['scroll-padding-bottom']],
-      ['scroll-pl', ['scroll-padding-left', 'scroll-padding-inline-start']],
+      ['scroll-pl', ['scroll-padding-inline-start']],
     ],
   ]),
   /*
@@ -1487,23 +1486,23 @@ export let corePlugins = {
   },
   */
   /**
-  * Logical Properties and Values: added with fallback.
-  * Retaining fallbacks because browser support isn’t entirely there.
-  * See https://caniuse.com/?search=border-inline-start-width.
+  * Logical Properties and Values: overriding defaults.
+  * Replaced border-top-left-radius with border-start-start-radius, etc.
+  * See https://caniuse.com/?search=border-start-start-radius.
   */
   borderRadius: createUtilityPlugin('borderRadius', [
     ['rounded', ['border-radius']],
     [
-      ['rounded-t', ['border-top-left-radius', 'border-start-start-radius', 'border-top-right-radius', 'border-start-end-radius']],
-      ['rounded-r', ['border-top-right-radius', 'border-start-end-radius', 'border-bottom-right-radius', 'border-end-end-radius']],
-      ['rounded-b', ['border-bottom-right-radius', 'border-end-end-radius', 'border-bottom-left-radius', 'border-end-start-radius']],
-      ['rounded-l', ['border-top-left-radius', 'border-start-start-radius', 'border-bottom-left-radius', 'border-end-start-radius']],
+      ['rounded-t', ['border-start-start-radius', 'border-start-end-radius']],
+      ['rounded-r', ['border-start-end-radius', 'border-end-end-radius']],
+      ['rounded-b', ['border-end-end-radius', 'border-end-start-radius']],
+      ['rounded-l', ['border-start-start-radius', 'border-end-start-radius']],
     ],
     [
-      ['rounded-tl', ['border-top-left-radius', 'border-start-start-radius']],
-      ['rounded-tr', ['border-top-right-radius', 'border-start-end-radius']],
-      ['rounded-br', ['border-bottom-right-radius', 'border-end-end-radius']],
-      ['rounded-bl', ['border-bottom-left-radius', 'border-end-start-radius']],
+      ['rounded-tl', ['border-start-start-radius']],
+      ['rounded-tr', ['border-start-end-radius']],
+      ['rounded-br', ['border-end-end-radius']],
+      ['rounded-bl', ['border-end-start-radius']],
     ],
   ]),
 
