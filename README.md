@@ -99,6 +99,10 @@ All utilities generated with this plugin are built with a copy-paste of Tailwind
 
 There are a lot of interesting alternatives worth considering.
 
+### Upcoming Tailwind support
+
+Follow the conversation in Tailwind discussion [#1483 \[Feature Proposal\] CSS Logical Properties](https://github.com/tailwindlabs/tailwindcss/discussions/1483) and pull request [#10166 Add logical properties support for inline direction](https://github.com/tailwindlabs/tailwindcss/pull/10166).
+
 ### tailwindcss-rtl
 
 [tailwindcss-rtl](https://github.com/20lives/tailwindcss-rtl) introduces new utility classes using CSS logical properties and values for RTL support. It’s a good alternative for projects wanting to:
@@ -121,10 +125,6 @@ Since tailwindcss-logical uses separate classes, it’s possible to mix and matc
 ### Tailwind 3.0 built-in RTL support
 
 [Tailwind’s built-in RTL support](https://tailwindcss.com/docs/hover-focus-and-other-states#rtl-support) is based on `rtl:` and `ltr:` modifiers. The only advantage of this approach is in how explicit it is, but it’s also very verbose and error-prone to always have to separately add mirrored styles.
-
-### Future Tailwind support
-
-Follow the conversation in Tailwind discussion [#1483 \[Feature Proposal\] CSS Logical Properties](https://github.com/tailwindlabs/tailwindcss/discussions/1483), we’ll see where this goes.
 
 ### Comparison table
 
