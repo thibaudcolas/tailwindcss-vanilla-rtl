@@ -1,12 +1,10 @@
-# [tailwindcss-vanilla-rtl](https://www.npmjs.com/package/tailwindcss-vanilla-rtl)
-
-[![npm](https://img.shields.io/npm/v/tailwindcss-vanilla-rtl.svg)](https://www.npmjs.com/package/tailwindcss-vanilla-rtl) [![Build status](https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/workflows/CI/badge.svg)](https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/actions)
+# [tailwindcss-vanilla-rtl](https://www.npmjs.com/package/tailwindcss-vanilla-rtl) [<img src="https://raw.githubusercontent.com/thibaudcolas/tailwindcss-vanilla-rtl/main/.github/tailwind-logo.svg?sanitize=true" alt="Tailwind" width="90" height="90" align="right">](https://tailwindcss.com/)
 
 Simple right-to-left (RTL) language support for Tailwind, switching vanilla utilities to [CSS logical properties and values](https://rtlstyling.com/posts/rtl-styling#css-logical-properties).
 
 ## Usage
 
-This plugin overrides Tailwind’s core’s utility classes, making it very straightforward to add RTL support. Have a look at the [browser support](#browser-support), [design decisions](#design-decisions), and [alternatives](#alternatives) to confirm which is the right fit for your project.
+This plugin overrides Tailwind’s core’s utility classes, making it very straightforward to add RTL support. Have a look at the [browser support](#browser-support), [design decisions](#design-decisions), and [alternatives](#alternatives) to validate whether this is the right fit for your project. Take a look at the [demo site](https://thibaudcolas.github.io/tailwindcss-vanilla-rtl/)
 
 Install the package, add it to the `plugins`, and disable the `corePlugins` it overrides.
 
@@ -28,7 +26,7 @@ module.exports = {
 };
 ```
 
-That’s it. Since the plugin uses the same utility classes as Tailwind core (`ml-4`, `px-10`, etc.), there are no new utilities to learn, no code to change.
+That’s it. Since the plugin uses the same utility classes as Tailwind core (`ml-4`, `px-10`, etc.), there’s no code to change, no new utilities to learn.
 
 The plugin is compatible with Tailwind v3.2 and up. For compatibility with older releases of Tailwind (starting with v3.0), use older releases of the package. See our [CHANGELOG](https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/blob/main/CHANGELOG.md) to learn which release is compatible with each version of Tailwind.
 
@@ -37,6 +35,8 @@ The plugin is compatible with Tailwind v3.2 and up. For compatibility with older
 Browser support for CSS logical properties and values is somewhat recent. This plugin has full support for Safari 15, Chrome/Edge 89, and Firefox 68.
 
 To provide full support for RTL languages, consider using [postcss-logical](https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-logical). Note that postcss-logical will create styles with `[dir=rtl]` and `[dir=ltr]` attribute selectors, which will have a higher specificity than single-class utilities, and risk behaving differently when combined with non-utility CSS.
+
+Here are specific properties with very recent browser support to keep in mind:
 
 - [border-radius](https://caniuse.com/?search=border-start-start-radius):
   - macOS Safari 15 (2021-09-21) and up
@@ -65,6 +65,12 @@ To provide full support for RTL languages, consider using [postcss-logical](http
 
 ## Design decisions
 
+- [RTL only](#rtl-only)
+- [Vanilla utility class names](#vanilla-utility-class-names)
+- [Vanilla functionality](#vanilla-functionality)
+- [No float support](#no-float-support)
+- [Tailwind corePlugins copy-paste](#tailwind-coreplugins-copy-paste)
+
 ### RTL only
 
 We only use logical properties and values that pertain to left and right styles, not top/bottom. Although this would be possible, we believe it’s rare enough for UI components to need to support all of LTR, RTL, and [top-to-bottom (TTB) languages](https://www.w3.org/International/questions/qa-scripts#directions) (Simplified Chinese, Traditional Chinese, Japanese, Korean) interchangeably. It’s also more complex to support a 90º rotation in text direction – all styles need to be written with logical properties and values.
@@ -76,6 +82,10 @@ This plugin retains Tailwind’s utility class names for layout, even though the
 - It’s not apparent from the classes alone that a component is built for RTL support.
 - There is no way to mix and match physical and logical styles within a given project – it’s completely impossible to write physical direction or dimension styles.
 - Code is authored from the LTR languages’ perspective (even if both LTR and LTR are supported).
+
+### Vanilla functionality
+
+Aside from the properties and values used, this plugin does not change the way Tailwind works. It does not add new utilities, nor does it change the way utilities are generated. For example, this plugin doesn’t help with [flow-relative `transform`](https://github.com/w3c/csswg-drafts/issues/1544). Those will need to be manually reversed.
 
 ### No float support
 
@@ -90,6 +100,8 @@ module.exports = {
   },
 };
 ```
+
+Flow-relative `float` and `clear` are apparently [getting support in Safari TP 158](https://caniuse.com/mdn-css_properties_float_flow_relative_values) (according to [MDN’s browser feature detection](https://github.com/mdn/browser-compat-data/pull/18268), not covered in the [TP 158 release notes](https://webkit.org/blog/13584/release-notes-for-safari-technology-preview-158/)). We’ll revisit this decision when support si clearer.
 
 ### Tailwind corePlugins copy-paste
 
