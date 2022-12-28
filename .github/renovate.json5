@@ -38,7 +38,7 @@
     // Node packages.
     { packageNames: ["prettier"], groupName: "prettier", automerge: true },
     { packageNames: ["eslint"], groupName: "eslint", automerge: true },
-    { packageNames: ["jest"], groupName: "jest", automerge: true },
+    { packageNames: ["jest", "postcss"], groupName: "jest", automerge: true },
     {
       packageNames: ["JamesIves/github-pages-deploy-action"],
       groupName: "github-pages-deploy-action",
