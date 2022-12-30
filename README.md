@@ -94,6 +94,14 @@ This plugin retains Tailwind’s utility class names for layout, even though the
 
 Aside from the properties and values used, this plugin does not change the way Tailwind works. It does not add new utilities, nor does it change the way utilities are generated. For example, this plugin doesn’t help with [flow-relative `transform`](https://github.com/w3c/csswg-drafts/issues/1544). Those will need to be manually reversed.
 
+Here are specific properties which aren’t covered and will need reversing manually:
+
+- `transform` / `translate`, because CSS itself [doesn’t support flow-relative logical values](https://github.com/w3c/csswg-drafts/issues/1544).
+- `background-position` – also not a thing in CSS (work in progress). See [CSS Backgrounds and Borders Module Level 4](https://drafts.csswg.org/css-backgrounds-4/#the-background-position), [Firefox #1732171](https://bugzilla.mozilla.org/show_bug.cgi?id=1732171), [WebKit #218094](https://bugs.webkit.org/show_bug.cgi?id=218094).
+- Angles in gradients, also because of a lack of [flow-relative gradients](https://github.com/w3c/csswg-drafts/issues/1724) in CSS.
+- `caption-side` – not supported by Tailwind.
+- `float` and `clear` – see [No float support](#no-float-support).
+
 ### No float support
 
 As of now, there is very little browser support for [flow-relative float values](https://caniuse.com/mdn-css_properties_float_flow_relative_values) (`float: inline-start` and `float: inline-end`). We recommend to avoid float layouts entirely, by disabling the corresponding core plugins:
