@@ -17,8 +17,9 @@ const vanillaRTL = require("tailwindcss-vanilla-rtl");
 
 module.exports = {
   plugins: [
-    // […]
+    // Place at the top of `plugins` so other plugins can override the CSS just like they would for core utilities:
     vanillaRTL,
+    // […]
   ],
   corePlugins: {
     ...vanillaRTL.disabledCorePlugins,
@@ -26,7 +27,7 @@ module.exports = {
 };
 ```
 
-That’s it. Since the plugin uses the same utility classes as Tailwind core (`ml-4`, `px-10`, etc.), there’s no code to change, no new utilities to learn.
+That’s it. Since the plugin uses the same utility classes as Tailwind core (`ml-4`, `px-10`, etc.), there’s no code to change, no new utilities to learn. Make sure the plugin is at the top of the `plugins` list so its output can be overridden by other utilities, just like would be the case with Tailwind core plugins.
 
 The plugin is compatible with Tailwind v3.2 and up. For compatibility with older releases of Tailwind (starting with v3.0), use older releases of the package. See our [CHANGELOG](https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/blob/main/CHANGELOG.md) to learn which release is compatible with each version of Tailwind.
 
@@ -62,6 +63,12 @@ Here are specific properties with very recent browser support to keep in mind:
   - Chrome 69 (2018-09-04) and up
   - Edge 79 (2020-01-15) and up
   - Firefox 68 (2019-07-09) and up
+
+## Compatibility with other plugins
+
+This plugin works with any other as long as it’s placed _first_ in the `plugins` list. Or at least above other plugins that add utilities using the same CSS properties. This is so the [CSS source order](https://developer.mozilla.org/en-US/docs/Web/CSS/Cascade#cascading_order) is the same as with core plugins.
+
+For full RTL support, any additional plugin should also use CSS logical properties and values.
 
 ## Design decisions
 

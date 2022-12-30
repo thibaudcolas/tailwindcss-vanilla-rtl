@@ -5,6 +5,7 @@ describe("tailwindcss-vanilla-rtl", () => {
     expect(vanillaRTL.disabledCorePlugins).toMatchInlineSnapshot(`
       {
         "borderColor": false,
+        "borderOpacity": false,
         "borderRadius": false,
         "borderWidth": false,
         "divideWidth": false,
