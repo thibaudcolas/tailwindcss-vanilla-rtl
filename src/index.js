@@ -15,6 +15,7 @@ const vanillaRTL = plugin((helpers) => {
   corePlugins.borderRadius(helpers);
   corePlugins.borderWidth(helpers);
   corePlugins.borderColor(helpers);
+  corePlugins.borderOpacity(helpers);
   corePlugins.padding(helpers);
   corePlugins.textAlign(helpers);
 });
@@ -33,6 +34,7 @@ vanillaRTL.disabledCorePlugins = {
   borderRadius: false,
   borderWidth: false,
   borderColor: false,
+  borderOpacity: false,
   padding: false,
   textAlign: false,
 };

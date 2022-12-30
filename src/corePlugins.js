@@ -1252,6 +1252,9 @@ export let corePlugins = {
   * Logical Properties and Values: overriding defaults.
   * Replaced `margin-left` with `margin-inline-start`, `margin-right` with `margin-inline-end`.
   * See https://caniuse.com/css-logical-props.
+  * Keep this overriden even if technically the left and right values are the same, so we retain the same
+  * source order between `space` and `margin` as in the core utilities.
+  * See https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/issues/16.
   */
   space: ({ matchUtilities, addUtilities, theme }) => {
     matchUtilities(
@@ -1292,6 +1295,9 @@ export let corePlugins = {
   * Logical Properties and Values: overriding defaults.
   * Replaced `border-left-width` with `border-inline-start-width`, `border-right-width` with `border-inline-end-width`.
   * See https://caniuse.com/?search=border-inline-start-width.
+  * Keep this overriden even if technically the left and right values are the same, so we retain the same
+  * source order between `space` and `margin` as in the core utilities.
+  * See https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/issues/16.
   */
   divideWidth: ({ matchUtilities, addUtilities, theme }) => {
     matchUtilities(
@@ -1549,7 +1555,10 @@ export let corePlugins = {
     matchUtilities(
       {
         border: (value) => {
-          if (!corePlugins('borderOpacity')) {
+          // Changing the conditional to keep borderOpacity support.
+          // See https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/issues/16.
+          // if (!corePlugins('borderOpacity')) {
+          if (!true) {
             return {
               'border-color': toColorValue(value),
             }
@@ -1571,7 +1580,10 @@ export let corePlugins = {
     matchUtilities(
       {
         'border-x': (value) => {
-          if (!corePlugins('borderOpacity')) {
+          // Changing the conditional to keep borderOpacity support.
+          // See https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/issues/16.
+          // if (!corePlugins('borderOpacity')) {
+          if (!true) {
             return {
               'border-inline-start-color': toColorValue(value),
               'border-inline-end-color': toColorValue(value),
@@ -1585,7 +1597,10 @@ export let corePlugins = {
           })
         },
         'border-y': (value) => {
-          if (!corePlugins('borderOpacity')) {
+          // Changing the conditional to keep borderOpacity support.
+          // See https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/issues/16.
+          // if (!corePlugins('borderOpacity')) {
+          if (!true) {
             return {
               'border-top-color': toColorValue(value),
               'border-bottom-color': toColorValue(value),
@@ -1608,7 +1623,10 @@ export let corePlugins = {
     matchUtilities(
       {
         'border-t': (value) => {
-          if (!corePlugins('borderOpacity')) {
+          // Changing the conditional to keep borderOpacity support.
+          // See https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/issues/16.
+          // if (!corePlugins('borderOpacity')) {
+          if (!true) {
             return {
               'border-top-color': toColorValue(value),
             }
@@ -1621,7 +1639,10 @@ export let corePlugins = {
           })
         },
         'border-r': (value) => {
-          if (!corePlugins('borderOpacity')) {
+          // Changing the conditional to keep borderOpacity support.
+          // See https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/issues/16.
+          // if (!corePlugins('borderOpacity')) {
+          if (!true) {
             return {
               'border-inline-end-color': toColorValue(value),
             }
@@ -1634,7 +1655,10 @@ export let corePlugins = {
           })
         },
         'border-b': (value) => {
-          if (!corePlugins('borderOpacity')) {
+          // Changing the conditional to keep borderOpacity support.
+          // See https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/issues/16.
+          // if (!corePlugins('borderOpacity')) {
+          if (!true) {
             return {
               'border-bottom-color': toColorValue(value),
             }
@@ -1647,7 +1671,10 @@ export let corePlugins = {
           })
         },
         'border-l': (value) => {
-          if (!corePlugins('borderOpacity')) {
+          // Changing the conditional to keep borderOpacity support.
+          // See https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/issues/16.
+          // if (!corePlugins('borderOpacity')) {
+          if (!true) {
             return {
               'border-inline-start-color': toColorValue(value),
             }
@@ -1666,11 +1693,14 @@ export let corePlugins = {
       }
     )
   },
-  /*
+  /**
+  * Logical Properties and Values: overridden with no code changes so those styles are output _after_ other border styles.
+  * See https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/issues/16.
+  */
   borderOpacity: createUtilityPlugin('borderOpacity', [
     ['border-opacity', ['--tw-border-opacity']],
   ]),
-
+  /*
   backgroundColor: ({ matchUtilities, theme, corePlugins }) => {
     matchUtilities(
       {
