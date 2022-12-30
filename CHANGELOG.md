@@ -2,7 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html), enforced with [semantic-release](https://github.com/semantic-release/semantic-release).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+# [0.4.0](https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/compare/v0.3.0...v0.4.0) (2022-12-30)
+
+## Changed
+
+- Fix border-opacity utilities by overriding `borderOpacity` core plugin ([#16](https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/issues/16), [#21](https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/pull/21)). Thanks to [@vltansky](https://github.com/vltansky).
+
+## Removed
+
+- Remove broken LTR-only fallbacks for `border-radius` and `scroll-padding` utilities ([#18](https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/issues/18), [#19](https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/pull/19)). Thanks to [@larsenwork](https://github.com/larsenwork).
 
 # [0.3.0](https://github.com/thibaudcolas/tailwindcss-vanilla-rtl/compare/v0.2.0...v0.3.0) (2022-10-23)
 
