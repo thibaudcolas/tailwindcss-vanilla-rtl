@@ -50,7 +50,7 @@ jobs:
       #   env:
       #     DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: npm run report:package
-      - uses: actions/configure-pages@v2
+      - uses: actions/configure-pages@v3
       - uses: actions/upload-pages-artifact@v1
         with:
           path: demo
@@ -73,5 +73,5 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
       - uses: actions/download-artifact@v3
-      - uses: actions/configure-pages@v2
+      - uses: actions/configure-pages@v3
       - uses: actions/deploy-pages@v1
