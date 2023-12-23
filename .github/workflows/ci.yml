@@ -51,7 +51,7 @@ jobs:
       #     DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: npm run report:package
       - uses: actions/configure-pages@v4
-      - uses: actions/upload-pages-artifact@v2
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: demo
       # - run: npx semantic-release
@@ -74,4 +74,4 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
       - uses: actions/configure-pages@v4
-      - uses: actions/deploy-pages@v3
+      - uses: actions/deploy-pages@v4
