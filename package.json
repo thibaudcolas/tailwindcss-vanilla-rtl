@@ -30,7 +30,7 @@
     "jest": "29.7.0",
     "postcss": "8.4.33",
     "prettier": "2.8.8",
-    "tailwindcss": "3.2.4"
+    "tailwindcss": "3.4.1"
   },
   "scripts": {
     "prepare": "./.githooks/install.sh",
